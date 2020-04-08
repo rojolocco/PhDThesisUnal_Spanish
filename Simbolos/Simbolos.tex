@@ -1,0 +1,273 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%									TESIS DE DOCTORADO
+%								CHRISTIAN FABIAN GARCIA ROMERO
+%							   UNIVERSIDAD NACIONAL DE COLOMBIA
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% LISTA DE SÍMBOLOS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONFIGURACIONES INICIALES DE LA TABLA
+
+%\setlength{\glsdescwidth}{0.8\hsize}
+\setlength{\glsdescwidth}{15cm}
+
+\newglossary[sl1]{symbolsLAT}{sl2}{sl3}{Símbolos con letras latinas}
+\newglossary[sg1]{symbolsGRI}{sg2}{sg3}{Símbolos con letras griegas}
+\newglossary[sp1]{supIndx}{sp2}{sp3}{Superíndices}
+\newglossary[sb1]{subIndx}{sb2}{sb3}{Subíndices}
+
+
+\glsaddkey{unit}{\glsentrytext{\glslabel}}
+{\glsentryunit}{\GLsentryunit}{\glsunit}{\Glsunit}{\GLSunit}
+
+\glsaddkey{def}{\glsentrytext{\glslabel}}
+{\glsentrydef}{\GLsentrydef}{\glsdef}{\Glsdef}{\GLSdef}
+
+\makeglossaries
+
+\newglossarystyle{symbunitlong}
+{
+    \setglossarystyle{long4col}
+    \renewenvironment{theglossary}
+    {
+        \begin{longtable}
+        	{lp{0.6\glsdescwidth}>{\arraybackslash}p{2.5cm}p{2cm}}}%
+        {\end{longtable}
+    }
+
+	\renewcommand*{\glossaryheader}
+    {
+  		\bfseries Símbolo & \bfseries Termino & \bfseries Unidad SI & \bfseries Definición\\
+  		\hline \\
+  		\endhead
+    }
+
+    \renewcommand*{\glossentry}[2]
+    {
+        \glstarget{##1}{\glossentryname{##1}} 
+        & \glossentrydesc{##1}
+        & \glsunit{##1}  
+        & \glsdef{##1}
+        \tabularnewline
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	LETRAS LATINAS
+
+% ENTRADA 1
+\newglossaryentry{PoroPresAgua}{
+name=\ensuremath{P_{w}},%SIMBOLO
+description={Poro-presion del agua},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ32}},%DEFINICION
+type=symbolsLAT, 
+sort={pw}}%ORDENAR
+
+% ENTRADA 2
+\newglossaryentry{PoroPresAire}{
+name=\ensuremath{P_{a}},%SIMBOLO
+description={Poro-presion del aire},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ32}},%DEFINICION
+type=symbolsLAT, 
+sort={pa}}%ORDENAR
+
+% ENTRADA 3
+\newglossaryentry{permeabilidad}{
+name=\ensuremath{k},% SIMBOLO
+description={Permeabilidad absoluta},% TERMINO
+unit={$m^2$},% UNIDAD SI
+def={Ecu \ref{eq:equ311}},% DEFINICION
+type=symbolsLAT, 
+sort={k}}% ORDENAR
+
+
+% ENTRADA 4
+\newglossaryentry{ANNInput}{
+name=\ensuremath{x_{i}},%SIMBOLO
+description={Datos de entrada-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ32}},%DEFINICION
+type=symbolsLAT, 
+sort={xi}}%ORDENAR
+
+% ENTRADA 5
+\newglossaryentry{ANNPesos}{
+name=\ensuremath{w_{ji}},%SIMBOLO
+description={Pesos de conexión-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ32}},%DEFINICION
+type=symbolsLAT, 
+sort={wji}}%ORDENAR
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	LETRAS GRIEGAS
+
+% ENTRADA 1
+\newglossaryentry{viscosidad}{
+name=\ensuremath{\mu},
+description={Viscosidad dinámica},
+unit={$Pa\cdot s$}, 
+def={Ecu \ref{eq:equ32}},
+type=symbolsGRI}
+
+% ENTRADA 2
+\newglossaryentry{porosidadVerdadera}{
+name=\ensuremath{\phi},%SIMBOLO
+description={Porosidad verdadera},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ32}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 3
+\newglossaryentry{CoeficienteBiot}{
+name=\ensuremath{\alpha},%SIMBOLO
+description={Coeficiente de Biot},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ32}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 4
+\newglossaryentry{poisson}{
+name=\ensuremath{\nu},%SIMBOLO
+description={Coeficiente de Poisson},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ32}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 5
+\newglossaryentry{divergente}{
+name=\ensuremath{\nabla},%SIMBOLO
+description={Operador divergente},%TERMINO
+unit={},% UNIDAD SI
+def={Ecu \ref{eq:equ32}},
+type=symbolsGRI}% ORDENAR
+
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	SUBINDICES
+
+% ENTRADA 1
+\newglossaryentry{spcIndx}{
+name={i,j,k},
+description={Indices de espacio},
+type=subIndx}
+
+% ENTRADA 2
+\newglossaryentry{spcIndx2}{
+name={x,y,z},
+description={Indices de espacio en el origen},
+type=subIndx}
+
+% ENTRADA 3
+\newglossaryentry{spcIndx3}{
+name={f},
+description={Fluido},
+type=subIndx}
+
+% ENTRADA 4
+\newglossaryentry{spcIndx4}{
+name={s},
+description={Particulas Solidas},
+type=subIndx}
+
+% ENTRADA 5
+\newglossaryentry{spcIndx5}{
+name={n,nw},
+description={Fluido no-mojado},
+type=subIndx}
+
+% ENTRADA 6
+\newglossaryentry{spcIndx6}{
+name={w},
+description={Fluido mojado},
+type=subIndx}
+
+% ENTRADA 7
+\newglossaryentry{spcIndx7}{
+name={p},
+description={Presión de fluido},
+type=subIndx}
+
+% ENTRADA 8
+\newglossaryentry{spcIndx8}{
+name={t},
+description={Derivada parcial respecto al tiempo},
+type=subIndx}
+
+% ENTRADA 9
+\newglossaryentry{spcIndx9}{
+name={$V$},
+description={Volumen discretizado},
+type=subIndx}
+
+
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	SUPERINDICES
+
+% ENTRADA 1
+\newglossaryentry{timIndx}{
+name={t},
+description={Indice de tiempo},
+type=supIndx}
+
+% ENTRADA 2
+\newglossaryentry{timIndx2}{
+name={0},
+description={Tiempo inicial},
+type=supIndx}
+
+
+% ENTRADA 3
+\newglossaryentry{timIndx3}{
+name={u},
+description={Cargas Nodales},
+type=supIndx}
+
+% ENTRADA 4
+\newglossaryentry{timIndx4}{
+name={p},
+description={Termino fuente},
+type=supIndx}
+
+% ENTRADA 5
+\newglossaryentry{timIndx5}{
+name={$T$},
+description={Transpuesta de la matriz},
+type=supIndx}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	ABREVIATURAS
+
+% ENTRADA 1
+\newacronym{ia}{IA}{Inteligencia Artificial}
+\newacronym{ann}{ANN}{Redes Neuronales Artificiales}
+\newacronym{edp}{EDP}{Ecuaciones Diferenciales Parciales}
+\newacronym{fl}{FL}{Lógica Difusa}
+\newacronym{mfe}{MFE}{Elementos Finitos Mixtos}
+
+%----------------------------------------------------------------------------------------
+

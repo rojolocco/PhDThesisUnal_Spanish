@@ -1,0 +1,865 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%									TESIS DE DOCTORADO
+%								CHRISTIAN FABIAN GARCIA ROMERO
+%							   UNIVERSIDAD NACIONAL DE COLOMBIA
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% LISTA DE SÍMBOLOS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONFIGURACIONES INICIALES DE LA TABLA
+
+%\setlength{\glsdescwidth}{0.8\hsize}
+\setlength{\glsdescwidth}{15cm}
+
+\newglossary[sl1]{symbolsLAT}{sl2}{sl3}{Símbolos con letras latinas}
+\newglossary[sg1]{symbolsGRI}{sg2}{sg3}{Símbolos con letras griegas}
+\newglossary[sp1]{supIndx}{sp2}{sp3}{Superíndices}
+\newglossary[sb1]{subIndx}{sb2}{sb3}{Subíndices}
+
+
+\glsaddkey{unit}{\glsentrytext{\glslabel}}
+{\glsentryunit}{\GLsentryunit}{\glsunit}{\Glsunit}{\GLSunit}
+
+\glsaddkey{def}{\glsentrytext{\glslabel}}
+{\glsentrydef}{\GLsentrydef}{\glsdef}{\Glsdef}{\GLSdef}
+
+\makeglossaries
+
+\newglossarystyle{symbunitlong}
+{
+    \setglossarystyle{long4col}
+    \renewenvironment{theglossary}
+    {
+        \begin{longtable}
+        	{lp{0.6\glsdescwidth}>{\arraybackslash}p{2.5cm}p{2cm}}}%
+        {\end{longtable}
+    }
+
+	\renewcommand*{\glossaryheader}
+    {
+  		\bfseries Símbolo & \bfseries Termino & \bfseries Unidad SI & \bfseries Definición\\
+  		\hline \\
+  		\endhead
+    }
+
+    \renewcommand*{\glossentry}[2]
+    {
+        \glstarget{##1}{\glossentryname{##1}} 
+        & \glossentrydesc{##1}
+        & \glsunit{##1}  
+        & \glsdef{##1}
+        \tabularnewline
+    }
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%----------------------------------------------------------------------------------------
+%	LETRAS LATINAS
+
+% ENTRADA 1
+\newglossaryentry{PoroPresAgua}{
+name=\ensuremath{P_{w}},%SIMBOLO
+description={Poro-presion del agua},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={},%DEFINICION
+type=symbolsLAT, 
+sort={pw}}%ORDENAR
+
+% ENTRADA 2
+\newglossaryentry{PoroPresAire}{
+name=\ensuremath{P_{a}},%SIMBOLO
+description={Poro-presion del aire},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={},%DEFINICION
+type=symbolsLAT, 
+sort={pa}}%ORDENAR
+
+% ENTRADA 3
+\newglossaryentry{permeabilidad}{
+name=\ensuremath{k},% SIMBOLO
+description={Permeabilidad absoluta},% TERMINO
+unit={$m^2$},% UNIDAD SI
+def={Ecu \ref{eq:equ311e}},% DEFINICION
+type=symbolsLAT, 
+sort={k}}% ORDENAR
+
+
+% ENTRADA 4
+\newglossaryentry{ANNInput}{
+name=\ensuremath{x_{i}},%SIMBOLO
+description={Datos de entrada-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ326}},%DEFINICION
+type=symbolsLAT, 
+sort={xi}}%ORDENAR
+
+% ENTRADA 5
+\newglossaryentry{ANNPesos}{
+name=\ensuremath{w_{ji}},%SIMBOLO
+description={Pesos de conexión-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ326}},%DEFINICION
+type=symbolsLAT, 
+sort={wji}}%ORDENAR
+
+% ENTRADA 6
+\newglossaryentry{ANNBias}{
+name=\ensuremath{b},%SIMBOLO
+description={Bias-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ326}},%DEFINICION
+type=symbolsLAT, 
+sort={b}}%ORDENAR
+
+% ENTRADA 7
+\newglossaryentry{ANNPotencial}{
+name=\ensuremath{v_{j}},%SIMBOLO
+description={Potencial de Activación-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ326}},%DEFINICION
+type=symbolsLAT, 
+sort={vj}}%ORDENAR
+
+% ENTRADA 8
+\newglossaryentry{ANNoutput}{
+name=\ensuremath{y_{j}},%SIMBOLO
+description={Datos de salida-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ327}},%DEFINICION
+type=symbolsLAT, 
+sort={yj}}%ORDENAR
+
+% ENTRADA 9
+\newglossaryentry{ANNActivacion}{
+name=\ensuremath{f},%SIMBOLO
+description={Funcion de activacion-ANN},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ327}},%DEFINICION
+type=symbolsLAT, 
+sort={f}}%ORDENAR
+
+
+% ENTRADA 10
+\newglossaryentry{permTensor}{
+name=\ensuremath{\mathbf{K}},%SIMBOLO
+description={Tensor de permeabilidad},%TERMINO
+unit={$m^2$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={k}}%ORDENAR
+
+% ENTRADA 11
+\newglossaryentry{poroPresion}{
+name=\ensuremath{p_p},%SIMBOLO
+description={Presión de poros},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={pp}}%ORDENAR
+
+% ENTRADA 12
+\newglossaryentry{compFluido}{
+name=\ensuremath{c_f},%SIMBOLO
+description={Compresibilidad del fluido},%TERMINO
+unit={$Pa^{-1}$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={cf}}%ORDENAR
+
+% ENTRADA 13
+\newglossaryentry{compSolido}{
+name=\ensuremath{c_s},%SIMBOLO
+description={Compresibilidad de las partículas solidas},%TERMINO
+unit={$Pa^{-1}$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={cs}}%ORDENAR
+
+% ENTRADA 14
+\newglossaryentry{unidTiempo}{
+name=\ensuremath{t},%SIMBOLO
+description={Incremento de tiempo},%TERMINO
+unit={$s$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={t}}%ORDENAR
+
+% ENTRADA 15
+\newglossaryentry{desplazamiento}{
+name=\ensuremath{\mathbf{u}},%SIMBOLO
+description={Desplazamientos del medio poroso},%TERMINO
+unit={$m$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={u}}%ORDENAR
+
+% ENTRADA 16
+\newglossaryentry{fuente}{
+name=\ensuremath{q_v},%SIMBOLO
+description={Termino fuente},%TERMINO
+unit={$m^3/m^3 std/s$},%UNIDAD SI
+def={Ecu \ref{eq:equ31}},%DEFINICION
+type=symbolsLAT, 
+sort={qv}}%ORDENAR
+
+% ENTRADA 17
+\newglossaryentry{modRigidez}{
+name=\ensuremath{G},%SIMBOLO
+description={Modulo de Rigidez},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ31b}},%DEFINICION
+type=symbolsLAT, 
+sort={g}}%ORDENAR
+
+% ENTRADA 18
+\newglossaryentry{volBulkIni}{
+name=\ensuremath{V_b^0},%SIMBOLO
+description={Volumen total(Bulk) inicial},%TERMINO
+unit={$m^3$},%UNIDAD SI
+def={Ecu \ref{eq:equ33}},%DEFINICION
+type=symbolsLAT, 
+sort={vbi}}%ORDENAR
+
+% ENTRADA 19
+\newglossaryentry{volBulk}{
+name=\ensuremath{V_b},%SIMBOLO
+description={Volumen total(Bulk)},%TERMINO
+unit={$m^3$},%UNIDAD SI
+def={Ecu \ref{eq:equ33}},%DEFINICION
+type=symbolsLAT, 
+sort={vb}}%ORDENAR
+
+% ENTRADA 20
+\newglossaryentry{comprBulk}{
+name=\ensuremath{c_b},%SIMBOLO
+description={Compresibilidad total(Bulk)},%TERMINO
+unit={$Pa_{-1}$},%UNIDAD SI
+def={Ecu \ref{eq:equ37}},%DEFINICION
+type=symbolsLAT, 
+sort={cb}}%ORDENAR
+
+% ENTRADA 21
+\newglossaryentry{comprMedio}{
+name=\ensuremath{c_m},%SIMBOLO
+description={Compresibilidad del medio poroso},%TERMINO
+unit={$Pa_{-1}$},%UNIDAD SI
+def={Ecu \ref{eq:equ37}},%DEFINICION
+type=symbolsLAT, 
+sort={cm}}%ORDENAR
+
+% ENTRADA 22
+\newglossaryentry{modElas}{
+name=\ensuremath{E},%SIMBOLO
+description={Modulo de Elasticidad},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ37}},%DEFINICION
+type=symbolsLAT, 
+sort={e}}%ORDENAR
+
+% ENTRADA 23
+\newglossaryentry{presW}{
+name=\ensuremath{p_w},%SIMBOLO
+description={Presión del fluido mojado},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ311a}},%DEFINICION
+type=symbolsLAT, 
+sort={pw}}%ORDENAR
+
+% ENTRADA 24
+\newglossaryentry{presNW}{
+name=\ensuremath{p_{nw}},%SIMBOLO
+description={Presión del fluido no-mojado},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ311b}},%DEFINICION
+type=symbolsLAT, 
+sort={pnw}}%ORDENAR
+
+% ENTRADA 25
+\newglossaryentry{satW}{
+name=\ensuremath{S_{w}},%SIMBOLO
+description={Saturación del fluido mojado},%TERMINO
+unit={$\%$},%UNIDAD SI
+def={Ecu \ref{eq:equ311a}},%DEFINICION
+type=symbolsLAT, 
+sort={sw}}%ORDENAR
+
+% ENTRADA 26
+\newglossaryentry{satNW}{
+name=\ensuremath{S_{nw}},%SIMBOLO
+description={Saturación del fluido no-mojado},%TERMINO
+unit={$\%$},%UNIDAD SI
+def={Ecu \ref{eq:equ311b}},%DEFINICION
+type=symbolsLAT, 
+sort={snw}}%ORDENAR
+
+% ENTRADA 27
+\newglossaryentry{BW}{
+name=\ensuremath{B_{w}},%SIMBOLO
+description={Factor volumen-formación del fluido mojado},%TERMINO
+unit={$m^3/m^3 std$},%UNIDAD SI
+def={Ecu \ref{eq:equ311a}},%DEFINICION
+type=symbolsLAT, 
+sort={bw}}%ORDENAR
+
+% ENTRADA 28
+\newglossaryentry{perRelW}{
+name=\ensuremath{k_{rw}},%SIMBOLO
+description={Permeabilidad relativa al fluido mojado},%TERMINO
+unit={$m^2$},%UNIDAD SI
+def={Ecu \ref{eq:equ311e}},%DEFINICION
+type=symbolsLAT, 
+sort={krw}}%ORDENAR
+
+% ENTRADA 29
+\newglossaryentry{perRelNW}{
+name=\ensuremath{k_{rnw}},%SIMBOLO
+description={Permeabilidad relativa al fluido no-mojado},%TERMINO
+unit={$m^2$},%UNIDAD SI
+def={Ecu \ref{eq:equ311f}},%DEFINICION
+type=symbolsLAT, 
+sort={krnw}}%ORDENAR
+
+% ENTRADA 30
+\newglossaryentry{distanciaZ}{
+name=\ensuremath{z},%SIMBOLO
+description={Distancia vertical al punto de referencia},%TERMINO
+unit={$m$},%UNIDAD SI
+def={Ecu \ref{eq:equ311a}},%DEFINICION
+type=symbolsLAT, 
+sort={z}}%ORDENAR
+
+% ENTRADA 31
+\newglossaryentry{BNW}{
+name=\ensuremath{B_{nw}},%SIMBOLO
+description={Factor volumen-formación del fluido no-mojado},%TERMINO
+unit={$m^3/m^3 std$},%UNIDAD SI
+def={Ecu \ref{eq:equ311b}},%DEFINICION
+type=symbolsLAT, 
+sort={bnw}}%ORDENAR
+
+% ENTRADA 32
+\newglossaryentry{capilar}{
+name=\ensuremath{P_{c}},%SIMBOLO
+description={Presión capilar},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ39}},%DEFINICION
+type=symbolsLAT, 
+sort={pc}}%ORDENAR
+
+% ENTRADA 33
+\newglossaryentry{fuenteW}{
+name=\ensuremath{q_{v,w}},%SIMBOLO
+description={Termino fuente para el fluido mojado},%TERMINO
+unit={$m^3/m^3 std/s$},%UNIDAD SI
+def={Ecu \ref{eq:equ311a}},%DEFINICION
+type=symbolsLAT, 
+sort={qvw}}%ORDENAR
+
+% ENTRADA 34
+\newglossaryentry{fuenteNW}{
+name=\ensuremath{q_{v,nw}},%SIMBOLO
+description={Termino fuente para el fluido no-mojado},%TERMINO
+unit={$m^3/m^3 std/s$},%UNIDAD SI
+def={Ecu \ref{eq:equ311b}},%DEFINICION
+type=symbolsLAT, 
+sort={qvnw}}%ORDENAR
+
+% ENTRADA 35
+\newglossaryentry{fuerzaCuerpo}{
+name=\ensuremath{f_{i}},%SIMBOLO
+description={Vector de fuerzas de cuerpo},%TERMINO
+unit={$N$},%UNIDAD SI
+def={Ecu \ref{eq:equ315}},%DEFINICION
+type=symbolsLAT, 
+sort={fi}}%ORDENAR
+
+% ENTRADA 36
+\newglossaryentry{cargasNodales}{
+name=\ensuremath{\mathbf{f}^{u}},%SIMBOLO
+description={Vector de cargas nodales},%TERMINO
+unit={$N$},%UNIDAD SI
+def={Ecu \ref{eq:equ318}},%DEFINICION
+type=symbolsLAT, 
+sort={fu}}%ORDENAR
+
+% ENTRADA 37
+\newglossaryentry{terminoFuente}{
+name=\ensuremath{\mathbf{f}^{p}},%SIMBOLO
+description={Vector de términos fuente},%TERMINO
+unit={$m^3$},%UNIDAD SI
+def={Ecu \ref{eq:equ318}},%DEFINICION
+type=symbolsLAT, 
+sort={fp}}%ORDENAR
+
+% ENTRADA 38
+\newglossaryentry{matrizElastica}{
+name=\ensuremath{\mathbf{M}},%SIMBOLO
+description={Matriz de rigidez elástica},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ318}},%DEFINICION
+type=symbolsLAT, 
+sort={m}}%ORDENAR
+
+% ENTRADA 39
+\newglossaryentry{matrizAcoplamiento}{
+name=\ensuremath{\mathbf{C}},%SIMBOLO
+description={Matriz de acoplamiento},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ318}},%DEFINICION
+type=symbolsLAT, 
+sort={c}}%ORDENAR
+
+% ENTRADA 40
+\newglossaryentry{matrizFlujo}{
+name=\ensuremath{\mathbf{H}},%SIMBOLO
+description={Matriz de rigidez de flujo},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ318}},%DEFINICION
+type=symbolsLAT, 
+sort={h}}%ORDENAR
+
+% ENTRADA 41
+\newglossaryentry{matrizCapacidad}{
+name=\ensuremath{\mathbf{R}},%SIMBOLO
+description={Matriz de capacidad de flujo},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ318}},%DEFINICION
+type=symbolsLAT, 
+sort={r}}%ORDENAR
+
+% ENTRADA 42
+\newglossaryentry{matrizDeformaciones}{
+name=\ensuremath{\mathbf{B}},%SIMBOLO
+description={Matriz de deformaciones},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ320a}},%DEFINICION
+type=symbolsLAT, 
+sort={b}}%ORDENAR
+
+% ENTRADA 43
+\newglossaryentry{matrizElasticaMC}{
+name=\ensuremath{\mathbf{D}},%SIMBOLO
+description={Matriz de rigidez elástica relacionada con el MC},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ320a}},%DEFINICION
+type=symbolsLAT, 
+sort={d}}%ORDENAR
+
+% ENTRADA 44
+\newglossaryentry{funcionesForma}{
+name=\ensuremath{\mathbf{N}},%SIMBOLO
+description={Funciones de forma},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ320b}},%DEFINICION
+type=symbolsLAT, 
+sort={n}}%ORDENAR
+
+% ENTRADA 45
+\newglossaryentry{funcionesFormaP}{
+name=\ensuremath{\mathbf{N_p}},%SIMBOLO
+description={Funciones de forma relacionadas a flujo},%TERMINO
+unit={ },%UNIDAD SI
+def={Ecu \ref{eq:equ320b}},%DEFINICION
+type=symbolsLAT, 
+sort={np}}%ORDENAR
+
+% ENTRADA 46
+\newglossaryentry{compressM}{
+name=\ensuremath{K_m},%SIMBOLO
+description={Modulo de compresibilidad del medio poroso},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ320d}},%DEFINICION
+type=symbolsLAT, 
+sort={km}}%ORDENAR
+
+% ENTRADA 47
+\newglossaryentry{compressS}{
+name=\ensuremath{K_s},%SIMBOLO
+description={Modulo de compresibilidad de partículas solidas},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ320d}},%DEFINICION
+type=symbolsLAT, 
+sort={ks}}%ORDENAR
+
+% ENTRADA 48
+\newglossaryentry{compressW}{
+name=\ensuremath{K_w},%SIMBOLO
+description={Modulo de compresibilidad del fluido},%TERMINO
+unit={$Pa$},%UNIDAD SI
+def={Ecu \ref{eq:equ320d}},%DEFINICION
+type=symbolsLAT, 
+sort={kw}}%ORDENAR
+
+% ENTRADA 49
+\newglossaryentry{identidad}{
+name=\ensuremath{\mathbf{I}},%SIMBOLO
+description={Matriz de identidad},%TERMINO
+unit={$Adim$},%UNIDAD SI
+def={Ecu \ref{eq:equ320b}},%DEFINICION
+type=symbolsLAT, 
+sort={i}}%ORDENAR
+
+% ENTRADA 50
+\newglossaryentry{kernel}{
+name=\ensuremath{\mathbf{K}},%SIMBOLO
+description={Kernel},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ328}},%DEFINICION
+type=symbolsLAT, 
+sort={k}}%ORDENAR
+
+% ENTRADA 51
+\newglossaryentry{bSVM}{
+name=\ensuremath{b},%SIMBOLO
+description={Parametro SVM},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ328}},%DEFINICION
+type=symbolsLAT, 
+sort={b}}%ORDENAR
+
+% ENTRADA 52
+\newglossaryentry{entradaSVM}{
+name=\ensuremath{\mathbf{X}},%SIMBOLO
+description={Vector de entradas SVM},%TERMINO
+unit={$Adim$},%UNIDAD SI
+def={Ecu \ref{eq:equ328}},%DEFINICION
+type=symbolsLAT, 
+sort={x}}%ORDENAR
+
+% ENTRADA 53
+\newglossaryentry{salidasSVM}{
+name=\ensuremath{y},%SIMBOLO
+description={Salidas SVM},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ329}},%DEFINICION
+type=symbolsLAT, 
+sort={y}}%ORDENAR
+
+% ENTRADA 54
+\newglossaryentry{funcionSVM}{
+name=\ensuremath{W},%SIMBOLO
+description={Funcion para minimizar-SVM},%TERMINO
+unit={},%UNIDAD SI
+def={Ecu \ref{eq:equ329}},%DEFINICION
+type=symbolsLAT, 
+sort={w}}%ORDENAR
+
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	LETRAS GRIEGAS
+
+% ENTRADA 1
+\newglossaryentry{viscosidad}{
+name=\ensuremath{\mu},
+description={Viscosidad dinámica},
+unit={$Pa\cdot s$}, 
+def={Ecu \ref{eq:equ32a}},
+type=symbolsGRI}
+
+% ENTRADA 2
+\newglossaryentry{porosidadVerdadera}{
+name=\ensuremath{\phi},%SIMBOLO
+description={Porosidad verdadera},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ32a}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 3
+\newglossaryentry{CoeficienteBiot}{
+name=\ensuremath{\alpha},%SIMBOLO
+description={Coeficiente de Biot},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ32a}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 4
+\newglossaryentry{poisson}{
+name=\ensuremath{\nu},%SIMBOLO
+description={Coeficiente de Poisson},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ32b}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 5
+\newglossaryentry{divergente}{
+name=\ensuremath{\nabla},%SIMBOLO
+description={Operador divergente},%TERMINO
+unit={},% UNIDAD SI
+def={Ecu \ref{eq:equ32}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 6
+\newglossaryentry{laplace}{
+name=\ensuremath{\nabla^2},%SIMBOLO
+description={Operador de Laplace},%TERMINO
+unit={},% UNIDAD SI
+def={Ecu \ref{eq:equ32b}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 7
+\newglossaryentry{defVol}{
+name=\ensuremath{\epsilon_v},%SIMBOLO
+description={Deformación volumétrica},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ33}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 8
+\newglossaryentry{porosidadSim}{
+name=\ensuremath{\phi^*},%SIMBOLO
+description={Porosidad del simulador de flujo},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ34a}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 9
+\newglossaryentry{gamma1}{
+name=\ensuremath{\gamma_1},%SIMBOLO
+description={Coeficiente de ajuste},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ37}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 10
+\newglossaryentry{gamma}{
+name=\ensuremath{\Gamma},%SIMBOLO
+description={Coeficiente de ajuste},%TERMINO
+unit={$Adim$},% UNIDAD SI
+def={Ecu \ref{eq:equ37}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 11
+\newglossaryentry{esfuerzoMedio}{
+name=\ensuremath{\sigma_m},%SIMBOLO
+description={Esfuerzo total promedio},%TERMINO
+unit={$Pa$},% UNIDAD SI
+def={Ecu \ref{eq:equ37}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 12
+\newglossaryentry{movbW}{
+name=\ensuremath{\lambda_w},%SIMBOLO
+description={Movilidad del fluido mojado},%TERMINO
+unit={$m^2/Pa\cdot s$},% UNIDAD SI
+def={Ecu \ref{eq:equ311a}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 13
+\newglossaryentry{movbNW}{
+name=\ensuremath{\lambda_{nw}},%SIMBOLO
+description={Movilidad del fluido no-mojado},%TERMINO
+unit={$m^2/Pa\cdot s$},% UNIDAD SI
+def={Ecu \ref{eq:equ311b}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 14
+\newglossaryentry{gammaNW}{
+name=\ensuremath{\gamma_{nw}},%SIMBOLO
+description={Peso específico del fluido no-mojado},%TERMINO
+unit={$N/m^2$},% UNIDAD SI
+def={Ecu \ref{eq:equ311b}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 15
+\newglossaryentry{gammaW}{
+name=\ensuremath{\gamma_w},%SIMBOLO
+description={Peso específico del fluido mojado},%TERMINO
+unit={$N/m^2$},% UNIDAD SI
+def={Ecu \ref{eq:equ311a}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 16
+\newglossaryentry{viscoW}{
+name=\ensuremath{\mu_w},%SIMBOLO
+description={Viscosidad dinámica del fluido mojado},%TERMINO
+unit={$Pa \cdot s$},% UNIDAD SI
+def={Ecu \ref{eq:equ311e}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 17
+\newglossaryentry{viscoNW}{
+name=\ensuremath{\mu_{nw}},%SIMBOLO
+description={Viscosidad dinámica del fluido no-mojado},%TERMINO
+unit={$Pa \cdot s$},% UNIDAD SI
+def={Ecu \ref{eq:equ311f}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 18
+\newglossaryentry{campoEsfuerzo}{
+name=\ensuremath{\sigma_{ij}},%SIMBOLO
+description={Matriz de esfuerzos totales},%TERMINO
+unit={$Pa$},% UNIDAD SI
+def={Ecu \ref{eq:equ315}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 19
+\newglossaryentry{constLame}{
+name=\ensuremath{\lambda},%SIMBOLO
+description={Constante de Lame},%TERMINO
+unit={$Pa$},% UNIDAD SI
+def={Ecu \ref{eq:equ315}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 20
+\newglossaryentry{alfaSVM}{
+name=\ensuremath{\alpha},%SIMBOLO
+description={Parametro SVM},%TERMINO
+unit={},% UNIDAD SI
+def={Ecu \ref{eq:equ328}},
+type=symbolsGRI}% ORDENAR
+
+% ENTRADA 21
+\newglossaryentry{alfaSVMprima}{
+name=\ensuremath{\alpha^*},%SIMBOLO
+description={Parametro SVM},%TERMINO
+unit={},% UNIDAD SI
+def={Ecu \ref{eq:equ328}},
+type=symbolsGRI}% ORDENAR
+
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	SUBINDICES
+
+% ENTRADA 1
+\newglossaryentry{spcIndx}{
+name={i,j,k},
+description={Indices de espacio},
+type=subIndx}
+
+% ENTRADA 2
+\newglossaryentry{spcIndx2}{
+name={x,y,z},
+description={Indices de espacio en el origen},
+type=subIndx}
+
+% ENTRADA 3
+\newglossaryentry{spcIndx3}{
+name={f},
+description={Fluido},
+type=subIndx}
+
+% ENTRADA 4
+\newglossaryentry{spcIndx4}{
+name={s},
+description={Particulas Solidas},
+type=subIndx}
+
+% ENTRADA 5
+\newglossaryentry{spcIndx5}{
+name={n,nw},
+description={Fluido no-mojado},
+type=subIndx}
+
+% ENTRADA 6
+\newglossaryentry{spcIndx6}{
+name={w},
+description={Fluido mojado},
+type=subIndx}
+
+% ENTRADA 7
+\newglossaryentry{spcIndx7}{
+name={p},
+description={Presión de fluido},
+type=subIndx}
+
+% ENTRADA 8
+\newglossaryentry{spcIndx8}{
+name={t},
+description={Derivada parcial respecto al tiempo},
+type=subIndx}
+
+% ENTRADA 9
+\newglossaryentry{spcIndx9}{
+name={$V$},
+description={Volumen discretizado},
+type=subIndx}
+
+
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	SUPERINDICES
+
+% ENTRADA 1
+\newglossaryentry{timIndx}{
+name={t},
+description={Indice de tiempo},
+type=supIndx}
+
+% ENTRADA 2
+\newglossaryentry{timIndx2}{
+name={0},
+description={Tiempo inicial},
+type=supIndx}
+
+
+% ENTRADA 3
+\newglossaryentry{timIndx3}{
+name={u},
+description={Cargas Nodales},
+type=supIndx}
+
+% ENTRADA 4
+\newglossaryentry{timIndx4}{
+name={p},
+description={Termino fuente},
+type=supIndx}
+
+% ENTRADA 5
+\newglossaryentry{timIndx5}{
+name={$T$},
+description={Transpuesta de la matriz},
+type=supIndx}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	ABREVIATURAS
+
+% ENTRADA 1
+\newacronym{ia}{IA}{Inteligencia Artificial}
+\newacronym{ann}{ANN}{Redes Neuronales Artificiales}
+\newacronym{edp}{EDP}{Ecuaciones Diferenciales Parciales}
+\newacronym{fl}{FL}{Lógica Difusa}
+\newacronym{mfe}{MFE}{Elementos Finitos Mixtos}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{mrst}{MRST}{Matlab Resevoir Simulation Toolbox}
+\newacronym{nfs}{NFS}{Sistemas Neuro-Fuzzy}
+\newacronym{srm}{SRM}{Surrogate Reservoir Model}
+\newacronym{icgm}{ICGM}{Intelligent Coupled Geomechanical Model}
+\newacronym{msmfe}{MsMFE}{Multiscale Mixed Finite Elements Method}
+\newacronym{fem}{FEM}{Método de los Elementos Finitos}
+\newacronym{svm}{SVM}{Support Vector Machines}
+\newacronym{epr}{EPR}{Evolucionary Polynomial Regression}
+%\newacronym{mars}{MARS}{Multivariate Adaptative Regression Spline}
+\newacronym{fvm}{FVM}{Método de los Volúmenes Finitos}
+\newacronym{fdm}{FDM}{Método de las Diferencias Finitas}
+\newacronym{bbm}{BBM}{Barcelona Basic Model}
+\newacronym{mcc}{MCC}{Cam Clay Modificado}
+\newacronym{msfv}{MsFV}{Multiscale Finite Volumes}
+\newacronym{cgm}{CGM}{Método de Galerkin Continuo}
+\newacronym{gpu}{GPU}{Unidades de Procesamiento Gráfico}
+\newacronym{rnb}{RNB}{Red Neuronal Biológica}
+\newacronym{ga}{GA}{Algoritmos Genéticos}
+\newacronym{lsr}{LSR}{Regresión con Mínimos Cuadrados}
+\newacronym{ecm}{ECM}{Error Cuadrático Medio}
+\newacronym{ema}{EMA}{Error Medio Absoluto}
+\newacronym{fenn}{FENN}{Redes Neuronales de Elementos Finitos}
+%----------------------------------------------------------------------------------------

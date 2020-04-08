@@ -1,0 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%									TESIS DE DOCTORADO
+%								CHRISTIAN FABIAN GARCIA ROMERO
+%							   UNIVERSIDAD NACIONAL DE COLOMBIA
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%ULTIMO CAPITULO: ANEXOS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+% ANEXOS
+\chapter*{Anexo}~\hypertarget{ch:anexo}{}
+\label{ch:anexo}
+\markleft{Anexo}
+\addcontentsline{toc}{chapter}{\numberline{}Anexo}
+\renewcommand{\thefigure}{\textbf{A-\arabic{figura}}}
+\renewcommand{\thetable}{\textbf{A-\arabic{tabla}}}
+
+\lstdefinestyle{matlabstyle}{ 
+        language=Matlab, % choose the language of the code
+        basicstyle=\footnotesize,% the size of the fonts that are used for the code
+        numbers=left, % where to put the line-numbers
+        numberstyle={\bfseries \footnotesize}, % the size of line-numbers
+        stepnumber=1, % the step between two line-numbers.  1 each line will be numbered
+        numbersep=8pt, % how far the line-numbers are from the code
+%       backgroundcolor=\color{white}, % choose the background color
+        showspaces=false, % show spaces adding particular underscores
+        showstringspaces=false, % underline spaces within strings
+        showtabs=false, % show tabs within strings adding particular underscores
+        frame=single, % adds a frame around the code
+%       tabsize=2, % sets default tabsize to 2 spaces
+%       captionpos=b,  % sets the caption-position to bottom
+        breaklines=true, % sets automatic line breaking
+        breakatwhitespace=false, %  only happen at whitespace
+        escapeinside={\%*}{*)}, % if you want to add a comment within your code
+        commentstyle={\bfseries \color{mygreen}},
+        keywordstyle={\bfseries \color{blue}},
+        stringstyle={\bfseries \color{mylilas}},
+        xleftmargin=20pt,
+        morekeywords={gpuArray,arrayfun,parallel,gpu,CUDAKernel,kernel}
+}
+
+\lstdefinestyle{txtstyle}{ 
+        language=Matlab, % choose the language of the code
+        basicstyle=\footnotesize,% the size of the fonts that are used for the code
+        numbers=none, % where to put the line-numbers
+        numberstyle={\bfseries \footnotesize}, % the size of line-numbers
+        stepnumber=1, % the step between two line-numbers.  1 each line will be numbered
+        numbersep=8pt, % how far the line-numbers are from the code
+        showspaces=false, % show spaces adding particular underscores
+        showstringspaces=false, % underline spaces within strings
+        showtabs=false, % show tabs within strings adding particular underscores
+        frame=false, % adds a frame around the code
+        breaklines=true, % sets automatic line breaking
+        breakatwhitespace=false, %  only happen at whitespace
+        escapeinside={\%*}{*)}, % if you want to add a comment within your code
+        commentstyle={\bfseries \color{mygreen}},
+        keywordstyle={\bfseries \color{blue}},
+        stringstyle={\bfseries \color{mylilas}},
+        xleftmargin=10pt,
+        otherkeywords={},
+        morekeywords={Device}
+}
+
+%----------------------------------------------------------------------------------------
+
+\lipsum[1-2]
+
+%----------------------------------------------------------------------------------------
+% ANEXO A
+\section*{Anexo A: Determinación del Modelo Numérico en Fluidos Compresibles}~\hypertarget{sec:AnexoA}{}
+\label{AppendixA}
+\markright{Anexo A}
+\addcontentsline{toc}{section}{\numberline{}Anexo A: Determinación del Modelo Numérico en Fluidos Compresibles}
+\setcounter{figure}{0}
+\setcounter{table}{0} 
+
+\lipsum[3-4]
+
+%----------------------------------------------------------------------------------------
+% ANEXO B
+\bigskip
+\section*{Anexo B: Algoritmos de Machine Learning en Modelación Constitutiva}~\hypertarget{sec:AnexoB}{}
+\label{AppendixB}
+\markright{Anexo B}
+\addcontentsline{toc}{section}{\numberline{}Anexo B: Algoritmos de Machine Learning en Modelación Constitutiva}
+
+\lipsum[3-4]
+
+%----------------------------------------------------------------------------------------

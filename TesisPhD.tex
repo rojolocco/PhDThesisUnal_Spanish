@@ -1,0 +1,77 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%									TESIS DE DOCTORADO
+%								CHRISTIAN FABIAN GARCIA ROMERO
+%							   UNIVERSIDAD NACIONAL DE COLOMBIA
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%-----------------------------------------------------------------------------------------
+% INTRODUCCIÓN DE LOS PARÁMETROS DEL DOCUMENTO LATEX
+\input{Encabezado}
+
+%-----------------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------------
+% INTRODUCCIÓN DEL ENCABEZADO DE LA TESIS HASTA LA TABLA DE CONTENIDO
+\begin{document}
+\pagenumbering{roman}
+\include{HojaTitulos/TituloPhD}
+%\include{Varios/Declaracion}
+%-----------------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------------
+% REDEFINIERON DE LOS NOMBRES DE LAS TABLAS DE CONTENIDO
+\renewcommand{\tablename}{\textbf{Tabla}}
+\renewcommand{\figurename}{\textbf{Figura}}
+\renewcommand{\listtablename}{Lista de Tablas}
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\contentsname}{Contenido}
+%-----------------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------------
+% LISTAS DE CONTENIDO, FIGURAS, TABLAS
+%\ihead{\leftmark}
+\tableofcontents
+\addcontentsline{toc}{chapter}{\numberline{}Contenido}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{\numberline{}Lista de Figuras}
+
+
+\listoftables
+\addcontentsline{toc}{chapter}{\numberline{}Lista de Tablas}
+
+\include{Simbolos/TabSimbolosPhD}
+%-----------------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------------
+% ADICIÓN DE LOS CAPÍTULOS Y ANEXOS
+\pagenumbering{arabic}
+\include{Kap_01/Kap1}
+\include{Kap_02/Kap2}
+\include{Kap_03/Kap3}
+\include{Kap_04/Kap4}
+\include{Kap_05/Kap5}
+\include{Kap_06/Kap6}
+\include{Kap_07/Kap7}
+\include{Kap_08/Kap8}
+\include{Kap_09/Kap9}
+\include{Kap_10/Kap10}
+\include{Kap_11/Kap11}
+\include{KapAnexos/Anexos}
+%-----------------------------------------------------------------------------------------
+
+
+%-----------------------------------------------------------------------------------------
+% BIBLIOGRAFÍA
+%\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\numberline{}Bibliografía}
+\printbibliography
+\end{document}
+%-----------------------------------------------------------------------------------------

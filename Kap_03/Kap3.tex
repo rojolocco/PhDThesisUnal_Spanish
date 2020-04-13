@@ -14,25 +14,25 @@
 
 %----------------------------------------------------------------------------------------
 % TITULO DEL CAPITULO 3
-\chapter{Modelamiento en Acoplamiento Geomecánico}~\hypertarget{chapter_03}{}
+\chapter{Modelamiento en Acoplamiento Flujo-Geomecánico}~\hypertarget{chapter_03}{}
 \label{ch:chapter_03}
 
-Un problema acoplado es aquel en que dos o más modelos físicos interactúan entre sí en busca de solucionar un problema y cuyo vinculo puede ocurrir en diferentes grados de interacción\cite{Tran2005}. En un modelo geomecánico acoplado interactúan conjuntamente los modelos de flujo y geomecánico~\footnote{De ahora en adelante se entenderá como modelo \textit{geomecánico} el modelo de esfuerzos-deformación.}. Setarri \& Walters(2001) \cite{Settari2001} categorizaron diferentes tipos de acoplamiento que dependen del grado de interacción de los modelos físicos. Ese grado de interacción impacta en la exactitud de los resultados y en el costo computacional de las simulaciones. Pero esta clasificación se puede reducir a solo dos tipos de acoplamiento: (1) Modelos totalmente acoplados; (2) Modelos parcialmente acoplados.\bigskip
+Un problema acoplado es aquel en que dos o más modelos físicos interactúan entre sí en busca de solucionar un problema y cuyo vinculo puede ocurrir en diferentes grados de interacción \cite{Tran2005}. En un modelo geomecánico acoplado interactúan conjuntamente los modelos de flujo y geomecánico~\footnote{Se entiende como modelo \textit{geomecánico} el modelo de esfuerzos-deformación.}. Setarri \& Walters(2001) \cite{Settari2001} categorizaron diferentes tipos de acoplamiento que dependen del grado de interacción de los modelos físicos. Ese grado de interacción impacta en la exactitud de los resultados y en el costo computacional de las simulaciones. Pero esta clasificación se puede reducir a solo dos tipos de acoplamiento: (1) Modelos totalmente acoplados; (2) Modelos parcialmente acoplados.\bigskip
 
-Los modelos totalmente acoplados combinan las ecuaciones que gobiernan los modelos de flujo y geomecánico. Las incógnitas que se resuelven en una simulación de flujo son las presiones de poros y las saturaciones de cada uno de los fluidos que conviven en el medio poroso. Las soluciones que se obtienen de una simulación geomecánica son los esfuerzos, deformaciones y desplazamientos. En un modelo totalmente acoplado se solucionan las ecuaciones diferenciales parciales de los dos modelos físicos de manera simultánea.\bigskip.
+Los modelos totalmente acoplados combinan las ecuaciones que gobiernan los modelos de flujo y geomecánico en un solo sistema de ecuaciones. Las incógnitas que se resuelven en una simulación de flujo son las presiones de poros y las saturaciones de cada uno de los fluidos que conviven en el medio poroso. Las soluciones que se obtienen de una simulación geomecánica son los esfuerzos, deformaciones y desplazamientos. En un modelo totalmente acoplado se obtienen todas esas incógnitas de manera simultánea.\bigskip.
 
-En los modelos parcialmente acoplados se hace primero la simulación de flujo, donde se obtienen los valores de presión y saturación. Esos valores entran al simulador geomecánico como parámetros iniciales y se obtiene los valores de los esfuerzos y deformaciones experimentados por el medio poroso. Luego se establece si el grado de convergencia es el deseado y de no serlo se continua con la siguiente iteración utilizando un método de convergencia como lo es el de Newton-Raphson. Cuando la convergencia es la deseada se inicia el siguiente incremento de tiempo. Esta sección se concentra en determinar los modelos totalmente acoplados que representan el problema físico acoplado. En el \textbf{Capítulo} \textbf{\ref{ch:chapter_07}} se determinaran los modelos parcialmente acoplados que harán parte del nuevo marco metodológico.\bigskip
+En los modelos parcialmente acoplados se hace primero la simulación de un modelo físico ya sea flujo o geomecánico, donde se obtienen los valores de las incógnitas. Esos valores entran al otro simulador como parámetros iniciales y se obtiene los valores de las incógnitas de ese otro modelo físico. Luego se establece si el grado de convergencia es el deseado y de no serlo se continua con la siguiente iteración utilizando un método de convergencia como por ejemplo el de Newton-Raphson. Cuando la convergencia es la deseada se inicia el siguiente incremento de tiempo. Esta sección se concentra en determinar los modelos totalmente acoplados que representan el problema físico. En el \textbf{Capítulo} \textbf{\ref{ch:chapter_07}} se determinarán los modelos parcialmente acoplados que harán parte del nuevo marco metodológico.\bigskip
 
 En este capítulo se determinó los modelos que rigen el flujo en medios porosos y el comportamiento mecánico del mismo, en condiciones saturadas y parcialmente saturadas. Se encontraron expresiones matemáticas que representan estos fenómenos físicos. Con estas ecuaciones se encontraron modelos numéricos que sirvieron para crear código computacional para la simulación numérica de tres tipos de problemas comunes del acoplamiento geomecánico, todos en presencia de un medio poroso elástico e isotópico: (1) Consolidación Unidimensional; (2) Consolidación bidimensional; (3) Problema \textit{Five-Spot} en presencia de flujo bifásico~\footnote{El problema \textit{Five-Spot} es común en la ingeniería de reservorios. Ver \href{https://www.spe.org/web/csp/datasets/set02.htm}{SPE10 Benchmark} para mayor información.}.\bigskip
 
-Con estas simulaciones se verifico que el modelo número determinado con el método de las diferencias finitas, es representativo del modelo matemático y que sirve como modelo base para las mejoras posteriores que se harán en los \textbf{Capítulos} \textbf{\ref{ch:chapter_07}} y \textbf{\ref{ch:chapter_08}}.
+Con estas simulaciones se verifico que el modelo número determinado con el método de los elementos finitos, es representativo del modelo matemático y que sirve como base para las mejoras posteriores que se harán en los \textbf{Capítulos} \textbf{\ref{ch:chapter_07}} y \textbf{\ref{ch:chapter_08}}.
 
 %----------------------------------------------------------------------------------------
 
 
 %----------------------------------------------------------------------------------------
 % TITULO DE LA SECCIÓN 3.1
-\section{Procedimiento de modelado en Medios Porosos}~\hypertarget{sec:sec310}{}
+\section{Modelamiento en Medios Porosos}~\hypertarget{sec:sec310}{}
 \label{sec:sec310}
 
 \lipsum[3-4]
@@ -112,7 +112,7 @@ La ecuación que gobierna la deformación del material sólido se llama ecuació
 \end{subequations} 
 \end{ceqn}
 %----------------------------------------------------------------------------------------
-donde ($\sigma_{xx}$) es el esfuerzo normal horizontal, ($\sigma_{yy}$) es el esfuerzo normal vertical, ($\tau_{xy}$) es el esfuerzo cortante, ($b_{x}$) ($b_{y}$) son las componentes de las fuerzas de cuerpo del dominio del problema. Definiendo:
+donde ($\sigma_{xx}$) es el esfuerzo normal horizontal, ($\sigma_{yy}$) es el esfuerzo normal vertical, ($\tau_{xy}$) es el esfuerzo cortante, ($b_{x}$) y ($b_{y}$) son las componentes de las fuerzas de cuerpo del dominio del problema. Definiendo:
 %----------------------------------------------------------------------------------------
 % ECUACIÓN 3.2
 \begin{ceqn} 
@@ -143,7 +143,7 @@ donde ($\sigma_{xx}$) es el esfuerzo normal horizontal, ($\sigma_{yy}$) es el es
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 
-Por lo tanto la \textbf{Ecuación} \textbf{\ref{eq:equ31}} se puede escribir como:
+Por lo tanto, la \textbf{Ecuación} \textbf{\ref{eq:equ31}} se puede escribir como:
 
 %----------------------------------------------------------------------------------------
 % ECUACIÓN 3.3
@@ -241,7 +241,7 @@ donde ($\mathbf{\epsilon}$) es el incremento de deformación total, ($\mathbf{\s
 \end{gather}  
 \end{ceqn}
 %----------------------------------------------------------------------------------------
-donde ($\epsilon_{xx}$) es la deformación normal horizontal, ($\epsilon_{yy}$) es la deformación normal vertical, ($\epsilon_{xx}$) es la deformación cortante.Por lo tanto la \textbf{Ecuación} \textbf{\ref{eq:equ37}} se puede expresar:
+donde ($\epsilon_{xx}$) es la deformación normal horizontal, ($\epsilon_{yy}$) es la deformación normal vertical, ($\epsilon_{xx}$) es la deformación cortante.Por lo tanto, la \textbf{Ecuación} \textbf{\ref{eq:equ37}} se puede expresar:
 
 %----------------------------------------------------------------------------------------
 % ECUACIÓN 3.9
@@ -460,7 +460,7 @@ G\nabla^2 \{\mathbf{u}\}
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \\
-La \textbf{Ecuación} \textbf{\ref{eq:equ321}} rige el comportamiento mecánico de un medio poroso isotrópico-elástico saturado. Las dos incógnitas son el campo de desplazamientos ($\mathbf{u}$) y la presión de poros del fluido que satura el medio($p$). Como se puede notar es una ecuación diferencial parcial sin términos transitorios. Al ocurrir un cambio en los esfuerzos efectivos, esta ecuación con ayuda de la ecuación de flujo determina el comportamiento acoplado del medio poroso.\bigskip
+La \textbf{Ecuación} \textbf{\ref{eq:equ321}} rige el comportamiento mecánico de un medio poroso isotrópico-elástico saturado. Las dos incógnitas son el campo de desplazamientos ($\mathbf{u}$) y la presión de poros del fluido que satura el medio ($p$). Como se puede notar es una ecuación diferencial parcial sin términos transitorios. Al ocurrir un cambio en los esfuerzos efectivos, esta ecuación con ayuda de la ecuación de flujo determina el comportamiento acoplado del medio poroso.\bigskip
 
 
 
@@ -490,10 +490,10 @@ Lo anterior se puede escribir matemáticamente de la siguiente manera:
 \begin{gather}
 %\begin{align}
 \normalsize{
-\nabla^T w_{xx} + \frac{\partial \epsilon_{xx}}{\partial t} + \frac{\phi}{K_f}\frac{\partial p}{\partial t} + \frac{(1-\phi)}{K_m}\frac{\partial p}{\partial t} - \frac{K}{K_m}\left[\frac{\partial \epsilon_{xx}}{\partial t} + \frac{1}{K_m}\frac{\partial p}{\partial t}\right] + Qv_{xx}= 0
+\frac{\partial w_{xx}}{\partial x} + \frac{\partial \epsilon_{xx}}{\partial t} + \frac{\phi}{K_f}\frac{\partial p}{\partial t} + \frac{(1-\phi)}{K_m}\frac{\partial p}{\partial t} - \frac{K}{K_m}\left[\frac{\partial \epsilon_{xx}}{\partial t} + \frac{1}{K_m}\frac{\partial p}{\partial t}\right]= 0
 } \label{eq:equ322a}\\[10pt]
 \normalsize{
-\nabla^T w_{yy} + \frac{\partial \epsilon_{yy}}{\partial t} + \frac{\phi}{K_f}\frac{\partial p}{\partial t} + \frac{(1-\phi)}{K_m}\frac{\partial p}{\partial t} - \frac{K}{K_m}\left[\frac{\partial \epsilon_{yy}}{\partial t} + \frac{1}{K_m}\frac{\partial p}{\partial t}\right] + Qv_{yy}= 0
+\frac{\partial w_{yy}}{\partial y} + \frac{\partial \epsilon_{yy}}{\partial t} + \frac{\phi}{K_f}\frac{\partial p}{\partial t} + \frac{(1-\phi)}{K_m}\frac{\partial p}{\partial t} - \frac{K}{K_m}\left[\frac{\partial \epsilon_{yy}}{\partial t} + \frac{1}{K_m}\frac{\partial p}{\partial t}\right] = 0
 } \label{eq:equ322b}
 %\end{align}
 \end{gather}  
@@ -614,7 +614,7 @@ donde ($S_w$) es la saturación del fluido mojado y ($S_n$) es la saturación de
 
 \textbf{B. Presión Capilar}
 \\
-Cuando se habla de flujo bifásico se debe tener en cuenta la presión capilar ($P_c$). La presión capilar es la diferencia de presión a través de la interfase que separa dos fluidos inmiscibles, cuando se ponen en contacto en un medio poroso. Con ayuda de la presión capilar se establece la relación que existe entre el fluido mojado y el fluido no-mojado, como se como se muestra en la siguiente ecuación:\bigskip
+Cuando se habla de flujo bifásico se debe tener en cuenta la presión capilar ($P_c$). La presión capilar es la diferencia de presión a través de la interfase que separa dos fluidos inmiscibles, cuando se ponen en contacto en un medio poroso. Con ayuda de la presión capilar se establece la relación que existe entre el fluido mojado y el fluido no-mojado, como se muestra en la siguiente ecuación:\bigskip
 
 %----------------------------------------------------------------------------------------
 % ECUACIÓN 3.28
@@ -662,14 +662,42 @@ Remplazando la \textbf{Ecuación} \textbf{\ref{eq:equ328}} en la \textbf{Ecuaci�
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \\
-\textbf{D. Presión de Poros Promedio}
-\\
-En presencia de flujo bifásico se puede determinar la presión promedio de poros como la suma de las contribuciones de presión de poros de cada fluido, ponderadas con sus respectivas saturaciones, como se ve en la siguiente ecuación:
+Utilizando la siguiente nomenclatura para las derivadas en el tiempo:
 
 %----------------------------------------------------------------------------------------
 % ECUACIÓN 3.31
 \begin{ceqn} 
 \begin{gather} \label{eq:equ331} 
+\frac{\partial x}{\partial t} = \dot{x}
+\end{gather}  
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+La \textbf{Ecuación} \textbf{\ref{eq:equ330}} se puede escribir:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.32
+\begin{ceqn} 
+\begin{subequations} \label{eq:equ332} 
+%\begin{gather}
+\begin{align}
+\shortintertext{Fluido mojado:}     &\dot{S_w} = S'_w\left[\dot{p_n}-\dot{ p_w}\right] \label{eq:equ332a} \\[10pt]
+\shortintertext{Fluido no-mojado:} 	&\dot{S_n} = -S'_w\left[\dot{p_n}-\dot{ p_w}\right] \label{eq:equ332b}
+\end{align}
+%\end{gather}  
+\end{subequations} 
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+
+\textbf{D. Presión de Poros Promedio}
+\\
+En presencia de flujo bifásico se puede determinar la presión promedio de poros como la suma de las contribuciones de presión de poros de cada fluido, ponderadas con sus respectivas saturaciones:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.33
+\begin{ceqn} 
+\begin{gather} \label{eq:equ333} 
 \overline{p} = S_w p_w + S_n p_n
 \end{gather}  
 \end{ceqn}
@@ -677,97 +705,97 @@ En presencia de flujo bifásico se puede determinar la presión promedio de poro
 \\
 \textbf{E. Tasa de Presión de Poros Promedio}
 \\
-Como se puede ver en la \textbf{Ecuación} \textbf{\ref{eq:equ326}} es necesario determinar la tasa de variación de la presión de poros. Para tener en cuenta las presiones de poros de los fluidos mojado y no-mojado es necesario derivar la \textbf{Ecuación} \textbf{\ref{eq:equ331}} con respecto al tiempo. Con ayuda de la regla de la cadena se obtiene:\bigskip
+Como se puede ver en la \textbf{Ecuación} \textbf{\ref{eq:equ326}} es necesario determinar la tasa de variación de la presión de poros. Para tener en cuenta las presiones de poros de los fluidos mojado y no-mojado es necesario derivar la \textbf{Ecuación} \textbf{\ref{eq:equ333}} con respecto al tiempo. Con ayuda de la regla de la cadena se obtiene:\bigskip
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.32
+% ECUACIÓN 3.34
 \begin{ceqn} 
-\begin{gather} \label{eq:equ332} 
-\frac{\partial \overline{p}}{\partial t} = p_w\frac{\partial S_w}{\partial t} + S_w\frac{\partial p_w}{\partial t} + p_n\frac{\partial S_n}{\partial t} + p_n\frac{\partial S_n}{\partial t}
+\begin{gather} \label{eq:equ3324}
+\dot{\overline{p}} = p_w\dot{S_w} + S_w\dot{p_w} + p_n\dot{S_n} + S_n\dot{p_n}
 \end{gather}  
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \\
-Substituyendo la \textbf{Ecuación} \textbf{\ref{eq:equ330}} en la \textbf{Ecuación} \textbf{\ref{eq:equ332}} se obtiene:
+Substituyendo la \textbf{Ecuación} \textbf{\ref{eq:equ326}} en la \textbf{Ecuación} \textbf{\ref{eq:equ334}} se obtiene:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.33
+% ECUACIÓN 3.35
 \begin{ceqn} 
-\begin{subequations} \label{eq:equ333} 
+\begin{subequations} \label{eq:equ335} 
 \begin{gather}
 %\begin{align}
-\frac{\partial \overline{p}}{\partial t} = p_w S'_w\left[\frac{\partial p_n}{\partial t}-\frac{\partial p_w}{\partial t}\right] + S_w\frac{\partial p_w}{\partial t} - p_n S'_w\left[\frac{\partial p_n}{\partial t}-\frac{\partial p_w}{\partial t}\right] + p_n\frac{\partial S_n}{\partial t} \label{eq:equ333a} \\[12pt]
-\frac{\partial \overline{p}}{\partial t} = \left[S_w + P_c S'_w\right]\frac{\partial p_w}{\partial t} + \left[S_n - P_c S'_w\right]\frac{\partial p_n}{\partial t}  \label{eq:equ333b} \\[12pt]
-\frac{\partial \overline{p}}{\partial t} = S''_w\frac{\partial p_w}{\partial t} + S''_n\frac{\partial p_n}{\partial t}  \label{eq:equ333c}
+\dot{\overline{p}} = p_w S'_w\left[\dot{p_n}-\dot{p_w}\right] + S_w\dot{p_w}  - p_n S'_w\left[\dot{p_n}-\dot{p_w}\right] + S_n\dot{p_n} \label{eq:equ335a} \\[12pt]
+\dot{\overline{p}} = \left[S_w + P_c S'_w\right]\dot{p_w} + \left[S_n - P_c S'_w\right]\dot{p_n}  \label{eq:equ335b} \\[12pt]
+\dot{\overline{p}} = S''_w\dot{p_w} + S''_n\dot{p_n}  \label{eq:equ335c}
 %\end{align}
 \end{gather}  
 \end{subequations} 
 \end{ceqn}
 %----------------------------------------------------------------------------------------
-%\bigskip\bigskip
+\bigskip
 
 \textbf{F. Gradiente de la Presión de Poros Promedio}
 \\
-De la misma forma como se determino la \textbf{Ecuación} \textbf{\ref{eq:equ333c}}, se puede obtener la variación de la presión de poros promedio respecto al espacio:
+De la misma forma como se determino la \textbf{Ecuación} \textbf{\ref{eq:equ335}}, se puede obtener la variación de la presión de poros promedio respecto al espacio:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.34
+% ECUACIÓN 3.36
 \begin{ceqn} 
-\begin{gather} \label{eq:equ334} 
+\begin{gather} \label{eq:equ336} 
 \nabla \overline{p} = S''_w\nabla p_w + S''_n\nabla p_n
 \end{gather}  
 \end{ceqn}
 %----------------------------------------------------------------------------------------
-\bigskip
+%\bigskip
 
 \textbf{G. Modelo Geomecánico Medio Poroso Parcialmente Saturado}
 \\
-Finalmente se puede obtener el modelo geomecánico para un medio poroso parcialmente saturado. Se substituye la \textbf{Ecuación} \textbf{\ref{eq:equ334}} en la \textbf{Ecuación} \textbf{\ref{eq:equ313}} y se obtiene:\bigskip
+Finalmente se puede obtener el modelo geomecánico para un medio poroso parcialmente saturado. Se substituye la \textbf{Ecuación} \textbf{\ref{eq:equ336}} en la \textbf{Ecuación} \textbf{\ref{eq:equ313}} se obtiene:\bigskip
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.35
+% ECUACIÓN 3.37
 
 \begin{ceqn} 
-\begin{subequations} \label{eq:equ335} 
+\begin{subequations} \label{eq:equ337} 
 \begin{gather}
 %\begin{align}
 \tikzmarkin{equ335}(0.5,-0.5)(-0.5,0.7)
 \normalsize{\mathbf{S}^T[\mathbf{D}]\mathbf{S}\{\mathbf{u}\} - 
 \alpha S''_w\nabla p_w + \alpha S''_n\nabla p_n + \{\mathbf{b}\} = \{\mathbf{0}\}}
-\tikzmarkend{equ335}\label{eq:equ335a} \\[12pt]
-S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ335b} \\[12pt]
-S''_n = S_n - P_c\frac{\partial S_n}{\partial P_c}  \label{eq:equ335c} \\[12pt]
-P_c = \mathnormal{f}(S_w) = p_n - p_w  \label{eq:equ335d}
+\tikzmarkend{equ335}\label{eq:equ337a} \\[12pt]
+S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ337b} \\[12pt]
+S''_n = S_n - P_c\frac{\partial S_n}{\partial P_c}  \label{eq:equ337c} \\[12pt]
+P_c = \mathnormal{f}(S_w) = p_n - p_w  \label{eq:equ337d}
 %\end{align}
 \end{gather}
 \end{subequations} 
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \\
-Esta ecuación gobierna el comportamiento mecánico de medios poroso parcialmente saturados cuando están en presencia de flujo bifásico. La incógnita de esta ecuación sigue siendo el campo de desplazamientos, pero se suma ahora la presión de poros del fluido mojado ($p_w$), la presión de poros del fluido no-mojado ($p_n$), la saturación del fluido mojado ($S_w$) y la saturación del fluido no-mojado ($S_n$).\bigskip\bigskip 
+Esta ecuación gobierna el comportamiento mecánico de medios porosos parcialmente saturados en presencia de flujo bifásico. La incógnita de esta ecuación sigue siendo el campo de desplazamientos, pero se suma ahora la presión de poros del fluido mojado ($p_w$), la presión de poros del fluido no-mojado ($p_n$), la saturación del fluido mojado ($S_w$) y la saturación del fluido no-mojado ($S_n$).\bigskip\bigskip 
 
 \textbf{H. Modelo Geomecánico Medio Poroso Parcialmente Saturado - Caso Elástico}
 \\
-Para el caso especial que el medio poroso sea elástico e isotrópico la \textbf{Ecuación} \textbf{\ref{eq:equ335}} se puede escribir de la siguiente forma:
+Para el caso especial que el medio poroso sea elástico e isotrópico la \textbf{Ecuación} \textbf{\ref{eq:equ337}} se puede escribir de la siguiente forma:\bigskip
 
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.36
+% ECUACIÓN 3.38
 \hfsetfillcolor{black!10}
 \hfsetbordercolor{black}
 \begin{ceqn} 
-\begin{subequations} \label{eq:equ336} 
+\begin{subequations} \label{eq:equ338} 
 \begin{gather}
 %\begin{align}
 \tikzmarkin{equ336}(0.25,-0.7)(-0.25,0.9)
 \normalsize{G\nabla^2 \{\mathbf{u}\}
 +\frac{G}{1-2\nu} \nabla\left( \nabla\cdot \{\mathbf{u}\}\right)
-- \left[1-\frac{K}{K_m}\right]S''_w\nabla p_w - \left[1-\frac{K}{K_m}\right]S''_n\nabla p_n + \{\mathbf{b}\} = \{\mathbf{0}\}}
-\tikzmarkend{equ336}\label{eq:equ336a} \\[12pt]
-S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ336b} \\[12pt]
-S''_n = S_n - P_c\frac{\partial S_n}{\partial P_c}  \label{eq:equ336c} \\[12pt]
-P_c = \mathnormal{f}(S_w) = p_n - p_w  \label{eq:equ336d} \\[12pt]
-\alpha=1-\frac{K}{K_m}  \label{eq:equ336e}
+- \alpha S''_w\nabla p_w - \alpha S''_n\nabla p_n + \{\mathbf{b}\} = \{\mathbf{0}\}}
+\tikzmarkend{equ336}\label{eq:equ338a} \\[12pt]
+S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ338b} \\[12pt]
+S''_n = S_n - P_c\frac{\partial S_n}{\partial P_c}  \label{eq:equ338c} \\[12pt]
+P_c = \mathnormal{f}(S_w) = p_n - p_w  \label{eq:equ338d} \\[12pt]
+\alpha=1-\frac{K}{K_m}  \label{eq:equ338e}
 %\end{align}
 \end{gather}  
 \end{subequations} 
@@ -780,67 +808,140 @@ P_c = \mathnormal{f}(S_w) = p_n - p_w  \label{eq:equ336d} \\[12pt]
 \subsubsection{Modelo de Flujo}~\hypertarget{sec:sec3322}{}
 \label{sec:sec3322}
 
-Para obtener el modelo de flujo bifásico se utilizara la misma metodología usada por Zienkiewicz et al.(1999) \cite{Zienkiewicz1999ComputationalGeomechanics}, para determinar la tasa de acumulación de fluidos en un medio poroso, como ya se mostró en la determinación de la \textbf{Ecuación} \textbf{\ref{eq:equ322}}. Para un medio poroso parcialmente saturado la tasa de acumulación de fluido mojado se puede expresar de la siguiente forma:
+Para obtener el modelo de flujo bifásico se utilizó la misma metodología usada por Zienkiewicz et al.(1999) \cite{Zienkiewicz1999ComputationalGeomechanics}, para determinar la tasa de acumulación de fluidos en un medio poroso, como ya se mostró en la determinación de la \textbf{Ecuación} \textbf{\ref{eq:equ322}}. Para un medio poroso parcialmente saturado la tasa de acumulación de fluido mojado se puede expresar de la siguiente forma:
 \bigskip
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.37
-\begin{ceqn} %\label{eq:equ337}
-\begin{gather}\label{eq:equ337}
-\nabla^T \{\mathbf{w}\} + S_w \frac{\alpha - \phi}{K_m}\frac{\partial \overline{p}}{\partial t} + \phi\frac{\partial S_w}{\partial t} + \alpha S_w\frac{\partial\mathbf{I}^T \{\mathbf{\epsilon}\}}{\partial t} + S_w\frac{\phi}{K_w}\frac{\partial p_w}{\partial t} + Q_w= 0
+% ECUACIÓN 3.39
+\begin{ceqn} %\label{eq:equ339}
+\begin{gather}\label{eq:equ339}
+\nabla^T \{\mathbf{w}_{\pi}\} + S_{\pi} \frac{\alpha - \phi}{K_m}\frac{\partial \overline{p}}{\partial t} + \phi\frac{\partial S_{\pi}}{\partial t} + \alpha S_{\pi}\frac{\partial\mathbf{I}^T \{\mathbf{\epsilon}\}}{\partial t} + S_{\pi}\frac{\phi}{K_{\pi}}\frac{\partial p_{\pi}}{\partial t} = 0
 \end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \bigskip
 
-Substituyendo las \textbf{Ecuaciones} \textbf{\ref{eq:equ334}}, \textbf{\ref{eq:equ325a}} y \textbf{\ref{eq:equ330a}} en la \textbf{Ecuación} \textbf{\ref{eq:equ337}} resulta en:\bigskip
+Esta ecuación aplica para cualquier tipo de fluido. Aplicando esta ecuación al fluido mojado ($w$) y cambiando la terminología de las derivadas parciales con respecto al tiempo como en la \textbf{Ecuación} \textbf{\ref{eq:equ331}}, se obtiene:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.38
-\begin{ceqn}
-\begin{align}\label{eq:equ338}
- \nabla^T \left[\frac{k k_{rw}}{\mu_{w}}\nabla p_w\right] &= S_w \frac{\alpha - \phi}{K_m}\left[S''_w\frac{\partial p_w}{\partial t} + S''_n\frac{\partial p_n}{\partial t}\right] + \phi\frac{\partial S_w}{\partial P_c}\left[\frac{\partial p_n}{\partial t} - \frac{\partial p_w}{\partial t} \right] \nonumber \\[12pt]
-  &\qquad {} + \alpha S_w\frac{\partial \mathbf{I}^T \{\mathbf{\epsilon}\}}{\partial t} +S_w\frac{\phi}{K_w}\frac{\partial p_w}{\partial t} + Q_w
-\end{align}
+% ECUACIÓN 3.40
+\begin{ceqn} %\label{eq:equ340}
+\begin{gather}\label{eq:equ340}
+\nabla^T \{\mathbf{w}_{w}\} + S_{w} \frac{\alpha - \phi}{K_m}\dot{\overline{p}}+ \phi\dot{S_{w}} + \alpha S_{w}\mathbf{I}^T \dot{\{\mathbf{\epsilon}\}} + S_{w}\frac{\phi}{K_{w}}\dot{p_{w}} = 0
+\end{gather}   
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+y para el fluido no-mojado se obtiene:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.41
+\begin{ceqn} %\label{eq:equ341}
+\begin{gather}\label{eq:equ341}
+\nabla^T \{\mathbf{w}_{n}\} + S_{n} \frac{\alpha - \phi}{K_m}\dot{\overline{p}}+ \phi\dot{S_{n}} + \alpha S_{n}\mathbf{I}^T \dot{\{\mathbf{\epsilon}\}} + S_{n}\frac{\phi}{K_{n}}\dot{p_{n}} = 0
+\end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \bigskip
+La ley de Darcy \cite{Zienkiewicz1999ComputationalGeomechanics} para flujo bifásico establece:
 
-Simplificando y reordenando, se obtiene la ecuación de flujo para el fluido mojado:
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.39
-\hfsetfillcolor{black!10}
-\hfsetbordercolor{black}
+% ECUACIÓN 3.42
 \begin{ceqn} 
-\begin{subequations} \label{eq:equ339} 
+\begin{subequations} \label{eq:equ342} 
 \begin{gather}
-\begin{multlined}
-\tikzmarkin{equ339}(0.25,-0.5)(-0.25,0.7)
-\nabla^T \left[\frac{k k_{rw}}{\mu_{w}}\nabla p_w\right] = \left[S_w \frac{\alpha - \phi}{K_m}S''_w + \phi\frac{S_w}{K_w} - \phi\frac{\partial S_w}{\partial P_c}\right]\frac{\partial p_w}{\partial t} \\[10pt]
-+ \left[S_w \frac{\alpha - \phi}{K_m}S''_n + \phi\frac{\partial S_w}{\partial P_c}\right]\frac{\partial p_n}{\partial t} +\alpha S_w\frac{\partial \nabla^T \{\mathbf{u}\}}{\partial t} + Q_w \tikzmarkend{equ339} \label{eq:equ339a}
-\end{multlined}\\[12pt]
-S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ339b}\\[12pt]
-S''_n = S_n - P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ339c}
+%\begin{align}
+\normalsize{\{\mathbf{w}_{\pi}\} = \frac{[\mathbf{k}] k_{r\pi}}{\mu_{\pi}}\nabla p_{\pi}} \label{eq:equ342a}\\[10pt]
+\normalsize{[\mathbf{k}]=\begin{bmatrix} 
+k_{x} & 0\\[1em]
+0 & k_{y}
+\end{bmatrix} } \label{eq:equ342b}
+%\end{align}
 \end{gather}  
 \end{subequations} 
 \end{ceqn}
 %----------------------------------------------------------------------------------------
-\bigskip
 
-Con el mismo procedimiento se obtiene la ecuación de flujo para el fluido no-mojado:
+donde ($\mathbf{k}$) es la matriz de permeabilidad absoluta del medio poroso, ($k_{r\pi}$) es la permeabilidad relativa del fluido ($\pi$), ($p_{\pi}$) y  ($\mu_{\pi}$) son la presión de poros y la viscosidad dinámica del fluido ($\pi$) respectivamente.\bigskip
+
+Substituyendo las \textbf{Ecuaciones} \textbf{\ref{eq:equ342}}, \textbf{\ref{eq:equ335b}} y \textbf{\ref{eq:equ332}} en la \textbf{Ecuación} \textbf{\ref{eq:equ340}} se obtiene para el fluido mojado:\bigskip
+
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.40
+% ECUACIÓN 3.43
+\begin{ceqn} 
+\begin{subequations} \label{eq:equ343} 
+\begin{gather}
+\begin{multlined}
+\nabla^T \left[\frac{[\mathbf{k}] k_{rw}}{\mu_{w}}\nabla p_{w}\right]
++ \alpha S_{w}\mathbf{I}^T \dot{\{\mathbf{\epsilon}\}} + S_{w}\frac{\phi}{K_{w}}\dot{p_{w}} + \phi\dot{S_{w}}\\[10pt]
++ S_{w} \frac{\alpha - \phi}{K_m}\left[S_w + P_c S'_w\right]\dot{p_w} 
++ S_{w} \frac{\alpha - \phi}{K_m}\left[S_n - P_c S'_w\right]\dot{p_n} = 0
+\end{multlined}
+\end{gather}  
+\end{subequations} 
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+%\bigskip
+
+y para el fluido no mojado
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.44
+\begin{ceqn} 
+\begin{subequations} \label{eq:equ344} 
+\begin{gather}
+\begin{multlined}
+\nabla^T \left[\frac{[\mathbf{k}] k_{rn}}{\mu_{n}}\nabla p_{n}\right]
++ \alpha S_{n}\mathbf{I}^T \dot{\{\mathbf{\epsilon}\}} + S_{n}\frac{\phi}{K_{n}}\dot{p_{n}} + \phi\dot{S_{n}}\\[10pt]
++ S_{n} \frac{\alpha - \phi}{K_m}\left[S_n + P_c S'_w\right]\dot{p_n} 
++ S_{n} \frac{\alpha - \phi}{K_m}\left[S_w - P_c S'_w\right]\dot{p_w} = 0
+\end{multlined}
+\end{gather}  
+\end{subequations} 
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+\\
+
+Simplificando y reordenando, se obtiene la ecuación de flujo para el fluido mojado:
+\\
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.45
 \hfsetfillcolor{black!10}
 \hfsetbordercolor{black}
 \begin{ceqn} 
-\begin{subequations} \label{eq:equ340} 
+\begin{subequations} \label{eq:equ345} 
+\begin{gather}
+\begin{multlined}
+\tikzmarkin{equ339}(0.25,-0.5)(-0.25,0.7)
+\nabla^T \left[\frac{[\mathbf{k}] k_{rw}}{\mu_{w}}\nabla p_w\right] = \left[S_w \frac{\alpha - \phi}{K_m}S''_w + \phi\frac{S_w}{K_w} - \phi\frac{\partial S_w}{\partial P_c}\right]\dot{p_w} \\[10pt]
++ \left[S_w \frac{\alpha - \phi}{K_m}S''_n + \phi\frac{\partial S_w}{\partial P_c}\right]\dot{p_n} +\alpha S_w \nabla^T \dot{\{\mathbf{u}\}} \tikzmarkend{equ339} \label{eq:equ345a}
+\end{multlined}\\[12pt]
+S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ345b}\\[10pt]
+S''_n = S_n - P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ345c}\\[10pt]
+S_w + S_n = 1 \label{eq:equ345d}\\[12pt]
+P_c = f(S_w) = p_n - P_w  \label{eq:equ345e}
+\end{gather}  
+\end{subequations} 
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+\\
+Con el mismo procedimiento se obtiene la ecuación de flujo para el fluido no-mojado:
+\\
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.46
+\hfsetfillcolor{black!10}
+\hfsetbordercolor{black}
+\begin{ceqn} 
+\begin{subequations} \label{eq:equ346} 
 \begin{gather}
 \begin{multlined}
 \tikzmarkin{equ340}(0.25,-0.5)(-0.25,0.7)
-\nabla^T \left[\frac{k k_{rn}}{\mu_{n}}\nabla p_n\right] = \left[S_n \frac{\alpha - \phi}{K_m}S''_n + \phi\frac{S_n}{K_n} - \phi\frac{\partial S_w}{\partial P_c}\right]\frac{\partial p_n}{\partial t} \\[10pt]
-+ \left[S_n \frac{\alpha - \phi}{K_m}S''_w + \phi\frac{\partial S_w}{\partial P_c}\right]\frac{\partial p_w}{\partial t} +\alpha S_n\frac{\partial \nabla^T \{\mathbf{u}\}}{\partial t} + Q_n \tikzmarkend{equ340} \label{eq:equ340a}
+\nabla^T \left[\frac{k k_{rn}}{\mu_{n}}\nabla p_n\right] = \left[S_n \frac{\alpha - \phi}{K_m}S''_n + \phi\frac{S_n}{K_n} - \phi\frac{\partial S_w}{\partial P_c}\right]\dot{p_n} \\[10pt]
++ \left[S_n \frac{\alpha - \phi}{K_m}S''_w + \phi\frac{\partial S_w}{\partial P_c}\right]\dot{p_w} +\alpha S_n \nabla^T \dot{\{\mathbf{u}\}} \tikzmarkend{equ340} \label{eq:equ346a}
 \end{multlined}\\[12pt]
-S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ340b}\\[12pt]
-S''_n = S_n - P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ340c}
+S''_w = S_w + P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ346b}\\[10pt]
+S''_n = S_n - P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ346c}\\[10pt]
+S_w + S_n = 1 \label{eq:equ346d}\\[12pt]
+P_c = f(S_w) = p_n - P_w  \label{eq:equ346e}
 \end{gather}  
 \end{subequations} 
 \end{ceqn}
@@ -855,21 +956,26 @@ S''_n = S_n - P_c\frac{\partial S_w}{\partial P_c}  \label{eq:equ340c}
 
 En la actualidad, el modelamiento numérico se usa ampliamente para simular el comportamiento de suelos y rocas en varios proyectos geotécnicos. Los métodos numéricos utilizados en el modelamiento de estos geomateriales incluyen el método de elementos finitos (MEF), el método de elementos de contorno (MEC), el método de diferencias finitas (MDF) y el método de elementos discretos (MED) \cite{Li2018RockboltingApplications}.\bigskip 
 
-Cualquiera que sea el método que se escoja para la simulación numérica del problema geotécnico que se desee resolver, es necesario partir de formulaciones matemáticas, como las de la sección anterior, y discretizar tanto en el dominio del espacio como en el dominio del tiempo\footnote{En el dominio del tiempo para problemas transitorios, como el flujo en medios porosos}.\bigskip
+Cualquiera que sea el método que se escoja para la simulación numérica del problema geotécnico que se desee resolver, es necesario partir de formulaciones matemáticas, como las de la sección anterior, y discretizar tanto en el dominio del espacio como en el dominio del tiempo.\bigskip
 
-En esta sección se utilizará el método de los elementos finitos, para obtener el modelo numérico del problema físico de acoplamiento geomecánico. Se obtendrá tanto para un medio saturado como para un medio parcialmente saturado.\bigskip
+En esta sección se utilizó el método de los elementos finitos, para obtener el modelo numérico del problema físico de acoplamiento flujo-geomecánico. Se obtendrá tanto para un medio saturado como para un medio parcialmente saturado.\bigskip
+
+La metodología adoptada para obtener este modelo numérico se puede ver en la \textbf{Figura} \textbf{\ref{fig:fig32}} y que es una adaptación a modelos de flujo y geomecánico de la metodología utilizada por Fish et al.(2007) \cite{Fish2007AElements}. Básicamente se realiza los siguientes pasos: (1) Obtener la forma "\textit{Strong}" del modelo matemático; (2) Obtener la forma "\textit{Weak}" del modelo matemático; (3) Discretizar en el espacio la forma "\textit{Weak}"; (4) Integrar numéricamente con la metodología de la cuadratura de Gauss; (5) Integrar en el tiempo las variables transitorias.\bigskip
+
+\newpage
+
 
 %........................................................................................
 % TITULO DE LA SUBSECCIÓN 3.4.1
 \subsection{Discretización del Espacio}~\hypertarget{sec:sec341}{}
 \label{sec:sec341}
 
-Para la discretización en el domino del espacio se utilizará el método de Galerkin o de los residuos ponderados, que se puede ver con más detalle en los libros de Zienkiewicz et al.(2013) \cite{Zienkiewicz2013TheFundamentals}, Rao (2011) \cite{Rao2011TheEngineering} o Fish et al.(2007) \cite{Fish2007AElements}. Típicamente para la resolución de ecuaciones diferenciales parciales como las que se determinaron en las secciones anteriores se puede escribir de manera general todas esas ecuaciones de la siguiente forma:
+Para la discretización en el domino del espacio se utilizará el método de los residuos ponderados, que se puede ver con más detalle en los libros de Zienkiewicz et al.(2013) \cite{Zienkiewicz2013TheFundamentals}, Rao (2011) \cite{Rao2011TheEngineering} o Fish et al.(2007) \cite{Fish2007AElements}. Típicamente para la resolución de ecuaciones diferenciales parciales como las que se determinaron en las secciones anteriores se puede escribir de manera general todas esas ecuaciones de la siguiente forma:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.40
-\begin{ceqn} %\label{eq:equ340}
-\begin{gather}\label{eq:equ340}
+% ECUACIÓN 3.47
+\begin{ceqn} %\label{eq:equ347}
+\begin{gather}\label{eq:equ347}
 \mathbf{A}\ddot{\Phi} + \mathbf{B}\dot{\Phi} + \mathbf{L}(\Phi) = 0
 \end{gather}   
 \end{ceqn}
@@ -878,23 +984,23 @@ Para la discretización en el domino del espacio se utilizará el método de Gal
 donde ($\mathbf{A}$) y ($\mathbf{B}$) son matrices de términos constantes, ($\mathbf{L}$) es un operador diferencial en el espacio ($d/dx$, $d/dy$ o $d/dz$) y,
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.41
+% ECUACIÓN 3.48
 \begin{ceqn} 
-\begin{subequations} \label{eq:equ341} 
+\begin{subequations} \label{eq:equ348} 
 \begin{gather}
-\dot{\Phi}  = \frac{\partial \Phi}{\partial t} \label{eq:equ341a}\\[12pt]
-\ddot{\Phi}  = \frac{\partial^2 \Phi}{\partial t^2}  \label{eq:equ341b}
+\dot{\Phi}  = \frac{\partial \Phi}{\partial t} \label{eq:equ348a}\\[12pt]
+\ddot{\Phi}  = \frac{\partial^2 \Phi}{\partial t^2}  \label{eq:equ348b}
 \end{gather}  
 \end{subequations} 
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 
-son las derivadas parciales con respecto al tiempo de primer grado y segundo grado. El termino ($\Phi$) se refiere al vector de incógnitas que se quieren encontrar, que para esta investigación es el campo de desplazamientos y las presiones de poros. Estas incógnitas, son 'discretizadas' o aproximadas por un conjunto finito de parámetros ($\overline{\Phi}$) y funciones de forma ($N$) que se especifican en todo el dominio ($\Omega$), de la siguiente forma:
+son las derivadas parciales con respecto al tiempo de primer grado y segundo grado. El termino ($\Phi$) se refiere al vector de incógnitas que se quieren encontrar, que para esta investigación es el campo de desplazamientos y la presión de poro. Estas incógnitas, son 'discretizadas' o aproximadas por un conjunto finito de parámetros ($\overline{\Phi}$) y funciones de forma ($N$) que se especifican en todo el dominio ($\Omega$), de la siguiente forma:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.42
-\begin{ceqn} %\label{eq:equ342}
-\begin{gather}\label{eq:equ342}
+% ECUACIÓN 3.49
+\begin{ceqn} %\label{eq:equ349}
+\begin{gather}\label{eq:equ349}
 \Phi \cong \Phi^h = \displaystyle\sum_{k=1}^{n} N_k\overline{\Phi}_k
 \end{gather}   
 \end{ceqn}
@@ -904,15 +1010,15 @@ Insertando el valor de la función aproximada ($\Phi^h$) en la \textbf{Ecuación
 podemos escribir un conjunto de ecuaciones residuales ponderadas de la forma:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.43
-\begin{ceqn} %\label{eq:equ343}
-\begin{gather}\label{eq:equ343}
+% ECUACIÓN 3.50
+\begin{ceqn} %\label{eq:equ350}
+\begin{gather}\label{eq:equ350}
 \int\limits_\Omega \mathbf{W}_j\left(\mathbf{A}\ddot{\Phi}^h + \mathbf{B}\dot{\Phi}^h + \mathbf{L}(\Phi^h)\right)\mathbf{d\Omega} = 0
 \end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 
-donde ($\mathbf{W}$) es la función de ponderación. Una opción muy adecuada para la función de ponderación es asumirla igual a las funciones de forma ($N_j$). Esta es la adopción básica adoptada en el método de Galerkin y es la que se toma en este estudio. El dominio y contorno adoptado en este estudio se representa en la \textbf{Figura} \textbf{\ref{fig:fig32}}.\bigskip
+donde ($\mathbf{W}$) es la función de ponderación. Una opción muy adecuada para la función de ponderación es asumirla igual a las funciones de forma ($N_j$). Esta es la adopción básica adoptada en el método de Galerkin, pero no hace parte en este estudio. El dominio y contorno adoptado en este estudio se representa en la \textbf{Figura} \textbf{\ref{fig:fig32}}.\bigskip
 
 %////////////////////////////////////////////////////////////////////////////////////////
 % Figura 3.2
@@ -942,17 +1048,15 @@ donde ($\mathbf{W}$) es la función de ponderación. Una opción muy adecuada pa
 Después de la integración, la \textbf{Ecuación} \textbf{\ref{eq:equ343}} queda reducida a esta ecuación diferencial ordinaria:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.44
-\begin{ceqn} %\label{eq:equ344}
-\begin{gather}\label{eq:equ344}
+% ECUACIÓN 3.51
+\begin{ceqn} %\label{eq:equ351}
+\begin{gather}\label{eq:equ351}
 \mathbf{M}\ddot{\overline{\Phi}} + \mathbf{C}\dot{\overline{\Phi}} + \mathbf{P}(\overline{\Phi}) = 0
 \end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 
-donde ($\mathbf{M}$), ($\mathbf{C}$) y ($\mathbf{P}$) son matrices o vectores cuya dimensión corresponde a la dimensión conjunto total de variables numéricas ($\overline{\Phi}_k$). Por lo general, los parámetros ($\overline{\Phi}$) representan los valores de ($\Phi^h$) en puntos llamados nodos y las funciones de forma, que generalmente son polinomios, describen la interpolación dentro de cada elemento finito, que divide el dominio ($\Omega$).\bigskip
-
-A continuación, se discretizará en el espacio las ecuaciones geomecánicas y de flujo determinadas en el modelo matemático de la sección anterior tanto para medios porosos saturados y parcialmente saturados. En la~\MYhref[blue]{sec:sec342}{Sección 3.4.2} se hará la discretización en el tiempo del modelo geomecánico acoplado.
+donde ($\mathbf{M}$), ($\mathbf{C}$) y ($\mathbf{P}$) son matrices o vectores cuya dimensión corresponde a la dimensión del conjunto total de variables numéricas ($\overline{\Phi}_k$). Por lo general, los parámetros ($\overline{\Phi}$) representan los valores de ($\Phi^h$) en puntos llamados nodos y las funciones de forma, que generalmente son polinomios, describen la interpolación dentro de cada elemento finito, que divide el dominio ($\Omega$).A continuación, se discretizará en el espacio las ecuaciones geomecánicas y de flujo determinadas en el modelo matemático de la sección anterior tanto para medios porosos saturados como parcialmente saturados. En la~\MYhref[blue]{sec:sec342}{Sección 3.4.2} se hará la discretización en el tiempo del modelo geomecánico acoplado.
 
 
 %........................................................................................
@@ -960,76 +1064,45 @@ A continuación, se discretizará en el espacio las ecuaciones geomecánicas y d
 \subsubsection{Medio Poroso Saturado}~\hypertarget{sec:sec3411}{}
 \label{sec:sec3411}
 
-Para un medio poroso saturado con características elastoplásticas y anisotrópicas el modelo matemático es el siguiente:
+El primer paso en la metodología propuesta es establecer la forma "\textit{Strong}" del modelo matemático. Esta forma se refiere a la Ecuación diferencial parcial que define el comportamiento del fenómeno físico con sus condiciones de contorno. 
+
+\bigskip
+\textbf{A. Forma "\textit{Strong}" del Modelo Geomecánico}\\
+Para un medio poroso saturado con características elastoplásticas y anisotrópicas la forma "\textit{Strong}" del modelo geomecánico es la siguiente:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.45
-\begin{ceqn} 
-\begin{subequations} \label{eq:equ345} 
+% ECUACIÓN 3.52
+\hfsetfillcolor{gray!50}
+\hfsetbordercolor{black}
+\begin{ceqn}
+\begin{subequations}\label{eq:equ352}
+\tikzmarkin{equ352}(4.25,-0.4)(-0.1,-0.4)
 \begin{gather}
 %\begin{align}
-\shortintertext{Modelo Geomecánico:} \mathbf{\nabla}(\mathbf{D}\mathbf{\nabla}\cdot\mathbf{u})-\alpha\mathbf{I}^T\mathbf{\nabla}p=\mathbf{F} \label{eq:equ345a} \\[15pt]
-\shortintertext{Modelo de Flujo:} 	
-\nabla^T \left[\frac{\mathbf{K}}{\mu}\nabla p\right] = \alpha\mathbf{I}^T\frac{\partial \nabla \mathbf{u}}{\partial t} +\left[\frac{\phi}{K_f}+\frac{(1-\phi)}{K_m}-\frac{\mathbf{I}\mathbf{D}\mathbf{I}^T}{(3K_{m})^{2}}\right]\frac{\partial p}{\partial t}+ q_v= 0 \label{eq:equ345b}\\[15pt]
-\shortintertext{Condiciones de Contorno para presión de poros:} 	
-p = \overline{p} \text{  en  } \Gamma = \Gamma_p \text{ ;  } \mathbf{n}\cdot\mathbf{w}=\mathbf{q_v} \text{  en  } \Gamma = \Gamma_w \text{ ; } \Gamma = \Gamma_p \cup \Gamma_w \label{eq:equ345c}\\[15pt]
-\shortintertext{Condiciones de Contorno para desplazamiento:} 	
-u = \overline{u} \text{  en  } \Gamma = \Gamma_u \text{ ;  } \mathbf{n}\cdot\mathbf{\sigma}=\mathbf{t} \text{  en  } \Gamma = \Gamma_t \text{ ; } \Gamma = \Gamma_u \cup \Gamma_t \label{eq:equ345d}
+\shortintertext{\textbf{   Forma "\textit{Strong}"}: Medio Poroso Saturado - Modelo Geomecánico}
+\normalsize{\mathbf{S}^T\{\mathbf{\sigma}\} + \{\mathbf{b}\} = \{\mathbf{0}\}}
+\label{eq:equ352a} %\\[4pt]
+\shortintertext{   Condiciones de Contorno} 	
+u = \overline{u}\ \text{en}\ \Gamma_u \text{;}\quad \mathbf{\sigma}\cdot\mathbf{\vec{n}} = \mathbf{\overline{t}}\ \text{en}\ \Gamma_t \text{;}\quad \Gamma = \Gamma_u \cup \Gamma_t \label{eq:equ352b} %\\[4pt]
+\shortintertext{   donde:}
+\normalsize{\{\mathbf{\sigma}\} = [\mathbf{D}]\mathbf{S}\{\mathbf{u}\} - \alpha\{\mathbf{I}\}^T p} \label{eq:equ352c}
+\tikzmarkend{equ352}
 %\end{align}
-\end{gather}  
-\end{subequations} 
+\end{gather}
+\end{subequations}
 \end{ceqn}
 %\bigskip
 %----------------------------------------------------------------------------------------
 
-%////////////////////////////////////////////////////////////////////////////////////////
-% Figura 3.3
+\textbf{B. Forma "\textit{Weak}" del Modelo Geomecánico}\\
+El siguiente paso es encontrar la forma "\textit{Weak}" de la \textbf{Ecuación} \textbf{\ref{eq:equ352}}. Para eso se debe pre-multiplicar la \textbf{Ecuación} \textbf{\ref{eq:equ352}} por una función arbitraria ($\mathbf{w}$), cuyo principal requisito es que se convierta en cero en el contorno ($\Gamma_{u}$), y luego se integra en todo el dominio ($\Omega$) y se iguala a cero. Estas operaciones en 2-Dimensiones resultan en:
 
-\begin{figure}[!ht]
-\centering
-\begin{subfigure}[b]{.45\textwidth}
-        \centering
-        \includegraphics[width=7cm]{Imagenes/Dominio_Real.png}
-        \caption{}
-        \label{fig:fig33a}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{.45\textwidth}
-        \centering
-        \includegraphics[width=7cm]{Imagenes/Dominio_FEM.png}
-        \caption{}
-        \label{fig:fig33b}
-\end{subfigure}
-\captionsetup{format=plain}
-\caption[Dominio y contorno del modelo geomecánico acoplado]{Dominio y contorno del modelo geomecánico acoplado. (\subref{fig:fig32a}) Dominio y contorno real; (\subref{fig:fig32b}) Dominio y contorno discretizado.} 
-%\vspace*{1cm}
-\label{fig:fig33}
-\end{figure}
-%////////////////////////////////////////////////////////////////////////////////////////
-
-Este es el modelo matemático geomecánico acoplado, que está representado por un sistema de ecuaciones diferenciales parciales donde se tienen dos incógnitas el campo de desplazamientos ($u$) y la presión de poros ($p$). Para discretizar estas ecuaciones en el dominio ($\Omega$) se asume que:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.46
-\begin{ceqn} 
-\begin{subequations} \label{eq:equ346} 
-\begin{gather}
-\mathbf{u} \cong \mathbf{u^h} = \displaystyle\sum_{k=1}^{n} N_{k}^{u} \overline{u}_k = \mathbf{N_u}\mathbf{\overline{u}}  \label{eq:equ346a}\\[12pt]
-\mathbf{p} \cong \mathbf{p^h} = \displaystyle\sum_{k=1}^{n} N_{k}^{p} \overline{p}_k = \mathbf{N_p}\mathbf{\overline{p}}  \label{eq:equ346b}
-\end{gather}  
-\end{subequations} 
-\end{ceqn}
-%----------------------------------------------------------------------------------------
-\\
-\textbf{A. Modelo Geomecánico en Medio Poroso Saturado}
-\\
-Reemplazando las \textbf{Ecuaciones} \textbf{\ref{eq:equ345a}} y \textbf{\ref{eq:equ346}} en la \textbf{\ref{eq:equ343}} se obtiene:
-
-%----------------------------------------------------------------------------------------
-% ECUACIÓN 3.47
-\begin{ceqn} %\label{eq:equ347}
-\begin{gather}\label{eq:equ347}
-\int\limits_\Omega \mathbf{N_{u}^T}\left(\mathbf{\nabla^T}(\mathbf{D}\mathbf{\nabla}\cdot[\mathbf{N_u}\mathbf{\overline{u}}])-\alpha\mathbf{I}^T\mathbf{\nabla}[\mathbf{N_p}\mathbf{\overline{p}}]-\mathbf{F}\right)\mathbf{d\Omega} = 0
+% ECUACIÓN 3.53
+\begin{ceqn} %\label{eq:equ353}
+\begin{gather}\label{eq:equ353}
+\iint \limits_\Omega \{\mathbf{w}\}^T \left(\mathbf{S}^T\{\mathbf{\sigma}\} + \{\mathbf{b}\}\right)\mathbf{dV} = \{\mathbf{0}\}
 \end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
@@ -1037,34 +1110,174 @@ Reemplazando las \textbf{Ecuaciones} \textbf{\ref{eq:equ345a}} y \textbf{\ref{eq
 Reordenando se obtiene:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.48
-\begin{ceqn} %\label{eq:equ348}
-\begin{gather}\label{eq:equ348}
-\int\limits_\Omega \mathbf{N_{u}^T}\mathbf{\nabla^T}\mathbf{D}\mathbf{\nabla}\mathbf{N_u}\mathbf{\overline{u}}\mathbf{d\Omega}  - \int\limits_\Omega \mathbf{N_{u}^T}\alpha\mathbf{I}^T\mathbf{\nabla}\mathbf{N_p}\mathbf{\overline{p}}\mathbf{d\Omega} - \int\limits_\Omega \mathbf{N_{u}^T}\mathbf{F}\mathbf{d\Omega} = 0
+% ECUACIÓN 3.54
+\begin{ceqn} %\label{eq:equ354}
+\begin{gather}\label{eq:equ354}
+\iint \limits_\Omega \{\mathbf{w}\}^T \mathbf{S}^T\{\mathbf{\sigma}\} \mathbf{dV}+ 
+\iint \limits_\Omega \{\mathbf{w}\}^T \{\mathbf{b}\} \mathbf{dV} = \{\mathbf{0}\}
 \end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \\
-Integrando por partes se obtiene:
+Se debe integrar por partes el primer termino de la  \textbf{Ecuación} \textbf{\ref{eq:equ354}}, con ayuda de la formula de Green. Para cualquier campo escalar ($\mathbf{r}(x,y)$) y cualquier vector escalar ($\mathbf{s}(x,y)$) la siguiente ecuación aplica:
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.49
-\begin{ceqn} %\label{eq:equ349}
-\begin{gather}\label{eq:equ349}
-\left[\int\limits_\Omega \mathbf{N_{u}^T}\mathbf{\nabla^T}\mathbf{D}\mathbf{\nabla}\mathbf{N_u}\mathbf{d\Omega}\right]\mathbf{\overline{u}}  - \left[\int\limits_\Omega \mathbf{N_{u}^T}\alpha\mathbf{I}^T\mathbf{\nabla}\mathbf{N_p}\mathbf{d\Omega}\right]\mathbf{\overline{p}} - \int\limits_\Omega \mathbf{N_{u}^T}\mathbf{F}\mathbf{d\Omega} = 0
+% ECUACIÓN 3.55
+\begin{ceqn} %\label{eq:equ355}
+\begin{gather}\label{eq:equ355}
+\iint \limits_\Omega [\mathbf{r}](\nabla \cdot \{\mathbf{s}\})\ dV = 
+\oint \limits_\Gamma [\mathbf{r}](\{\mathbf{s}\} \cdot \mathbf{\vec{n}})\ dS -
+\iint \limits_\Omega (\nabla [\mathbf{r}]) \cdot \{\mathbf{s}\}\ dV
+\end{gather}   
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+Aplicando la formula de Green en el primer termino de la \textbf{Ecuación} \textbf{\ref{eq:equ354}} se obtiene:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.56
+\begin{ceqn} %\label{eq:equ357}
+\begin{gather}\label{eq:equ357}
+\iint \limits_\Omega \{\mathbf{w}\}^T \mathbf{S}^T\{\mathbf{\sigma}\} \mathbf{dV} = 
+\int \limits_\Gamma \{\mathbf{w}\}^T(\{\mathbf{\sigma}\} \cdot \mathbf{\vec{n}})\ dS -
+\iint \limits_\Omega (\{\mathbf{w}\}^T \mathbf{S}^T) \cdot \{\mathbf{\sigma}\}\ dV
 \end{gather}   
 \end{ceqn}
 %----------------------------------------------------------------------------------------
 \\
-Según Zienkiewicz et al.(2013) \cite{Zienkiewicz2013TheFundamentals}:
+La integral evaluada en el dominio ($\Gamma$) de la \textbf{Ecuación} \textbf{\ref{eq:equ356}} se puede desglosar en el contorno ($\Gamma_{u}$) y el contorno ($\Gamma_{t}$):
 
 %----------------------------------------------------------------------------------------
-% ECUACIÓN 3.50
-\begin{ceqn} %\label{eq:equ350}
-\begin{gather}\label{eq:equ350}
-\mathbf{B} = \mathbf{\nabla N_u}
+% ECUACIÓN 3.57
+\begin{ceqn} %\label{eq:equ357}
+\begin{gather}\label{eq:equ357}
+\int \limits_\Gamma \{\mathbf{w}\}^T(\{\mathbf{\sigma}\} \cdot \mathbf{\vec{n}})\ dS =
+\int \limits_{\Gamma_{u}} \{\mathbf{w}\}^T(\{\mathbf{\sigma}\} \cdot \mathbf{\vec{n}})\ dS +
+\int \limits_{\Gamma_{t}} \{\mathbf{w}\}^T(\{\mathbf{\sigma}\} \cdot \mathbf{\vec{n}})\ dS
 \end{gather}   
 \end{ceqn}
+%----------------------------------------------------------------------------------------
+
+como $\{\mathbf{w}\} = 0$ en $\Gamma_{u}$ y $\{\mathbf{\sigma}\}\cdot \mathbf{\vec{n}} = \{\overline{t}\}$ en $\Gamma_{u}$
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.58
+\begin{ceqn} %\label{eq:equ358}
+\begin{gather}\label{eq:equ358}
+\int \limits_\Gamma \{\mathbf{w}\}^T(\{\mathbf{\sigma}\} \cdot \mathbf{\vec{n}})\ dS =
+\int \limits_{\Gamma_{t}} \{\mathbf{w}\}^T \{\overline{t}\}\ dS
+\end{gather}   
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+Si descomponemos el lado derecho de la \textbf{Ecuación} \textbf{\ref{eq:equ358}} en sus componentes en 2-Dimensiones se obtiene:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.59
+\begin{ceqn} %\label{eq:equ359}
+\begin{gather}\label{eq:equ359}
+\int \limits_{\Gamma_{t}} \{\mathbf{w}\}^T \overline{t}\ dS = 
+\int \limits_{\Gamma_{tx}} \{\mathbf{w}\}^T \{t_x\}\ dS +
+\int \limits_{\Gamma_{ty}} \{\mathbf{w}\}^T \{t_y\}\ dS
+\end{gather}   
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+donde 
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.60
+\begin{ceqn} %\label{eq:equ360}
+\begin{gather}\label{eq:equ360}
+\{t_x\} = \begin{Bmatrix} \overline{t_x} \\ 0 \end{Bmatrix}\ \text{;}\quad
+\{t_y\} = \begin{Bmatrix} 0 \\ \overline{t_y} \end{Bmatrix}\
+\end{gather}   
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+Por lo tanto, la \textbf{Ecuación} \textbf{\ref{eq:equ356}} se convierte en:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.61
+\begin{ceqn} %\label{eq:equ361}
+\begin{gather}\label{eq:equ361}
+\iint \limits_\Omega \{\mathbf{w}\}^T \mathbf{S}^T\{\mathbf{\sigma}\} \mathbf{dV} = 
+\int \limits_{\Gamma_{tx}} \{\mathbf{w}\}^T \{t_x\}\ dS +
+\int \limits_{\Gamma_{ty}} \{\mathbf{w}\}^T \{t_y\}\ dS -
+\iint \limits_\Omega (\{\mathbf{w}\}^T \mathbf{S}^T) \cdot \{\mathbf{\sigma}\}\ dV
+\end{gather}   
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+
+Reemplazando la \textbf{Ecuación} \textbf{\ref{eq:equ361}} en la \textbf{Ecuación} \textbf{\ref{eq:equ354}} se obtiene la forma "\textit{Weak}" del modelo geomecánico para un medio poroso saturado:
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.62
+\hfsetfillcolor{gray!50}
+\hfsetbordercolor{black}
+\begin{ceqn}
+\begin{subequations}\label{eq:equ362}
+\tikzmarkin{equ362}(5.25,-0.4)(-0.1,-0.4)
+\begin{gather}
+%\begin{align}
+\shortintertext{\textbf{   Forma "\textit{Weak}"}: Medio Poroso Saturado - Modelo Geomecánico}
+\iint \limits_\Omega (\{\mathbf{w}\}^T \mathbf{S}^T) \cdot \{\mathbf{\sigma}\}\ dV = 
+\iint \limits_\Omega \{\mathbf{w}\}^T \{\mathbf{b}\} \mathbf{dV} +
+\int \limits_{\Gamma_{tx}} \{\mathbf{w}\}^T \{t_x\}\ dS +
+\int \limits_{\Gamma_{ty}} \{\mathbf{w}\}^T \{t_y\}\ dS 
+\label{eq:equ362a} %\\[4pt]
+\shortintertext{   Condiciones de Contorno} 	
+u = \overline{u}\ \text{en}\ \Gamma_u \text{;}\quad \mathbf{\sigma_x}\cdot\mathbf{\vec{n}} = \mathbf{\overline{t_x}}\ \text{en}\ \Gamma_{tx} \text{;}\quad 
+\mathbf{\sigma_y}\cdot\mathbf{\vec{n}} = \mathbf{\overline{t_y}}\ \text{en}\ \Gamma_{ty} \text{;}\quad
+\Gamma = \Gamma_u \cup \Gamma_t \label{eq:equ362b} %\\[4pt]
+\shortintertext{   donde:}
+\normalsize{\{\mathbf{\sigma}\} = [\mathbf{D}]\mathbf{S}\{\mathbf{u}\} - \alpha\{\mathbf{I}\}^T p} \label{eq:equ362c}\\[4pt]
+\normalsize{\{\mathbf{w}\} = 0\quad \text{en}\quad \Gamma_{t}} \label{eq:equ362d}
+\tikzmarkend{equ362}
+%\end{align}
+\end{gather}
+\end{subequations}
+\end{ceqn}
+%\bigskip
+%----------------------------------------------------------------------------------------
+
+\bigskip\bigskip
+\textbf{C. Discretización en el Espacio del Modelo Geomecánico}\\
+Para realizar la discretización de la forma "\textit{Weak}" del modelo geomecánico se deben hacer las siguientes definiciones:
+
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.63
+\begin{ceqn} 
+\begin{subequations} \label{eq:equ363} 
+\begin{gather}
+\{\mathbf{u}^e\} \cong  \left[\mathbf{N_u}\right] \{\mathbf{U^e}\} \label{eq:equ363a}\\[10pt]
+\mathbf{p}^e \cong  \left[\mathbf{N_p}\right] \mathbf{P^e} \label{eq:equ363b}\\[10pt]
+\{\mathbf{w}^e\} \cong \left[\mathbf{N_u}\right] \{\mathbf{W^e}\}  \label{eq:equ363c}
+\end{gather}  
+\end{subequations} 
+\end{ceqn}
+%----------------------------------------------------------------------------------------
+\bigskip
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+% ECUACIÓN 3.63
+%\begin{ceqn} %\label{eq:equ363}
+%\begin{gather}\label{eq:equ363}
+%\mathbf{B} = \mathbf{\nabla N_u}
+%\end{gather}   
+%\end{ceqn}
 %----------------------------------------------------------------------------------------
 
 Por lo tanto, la \textbf{Ecuación} \textbf{\ref{eq:equ349}} se transforma en:
